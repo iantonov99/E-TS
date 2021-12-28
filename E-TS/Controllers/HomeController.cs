@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using E_TS.Models;
+using E_TS.Data.Common;
 
 namespace E_TS.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext _context;
+        private readonly IRepository _repo;
 
-        public HomeController(ApplicationDbContext context, ILogger<HomeController> logger)
+        public HomeController(IRepository repo, ILogger<HomeController> logger)
         {
             _logger = logger;
-            _context = context;
+            _repo = repo;
         }
 
         public IActionResult Index()
@@ -38,7 +39,7 @@ namespace E_TS.Controllers
 
         public IActionResult Test()
         {
-            var tickets = _context.Tickets.ToList();
+            var tickets = _repo.All<Ticket>().ToList();
 
 
             return View("Test");

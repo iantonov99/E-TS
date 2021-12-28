@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using E_TS.Data.Common;
+using E_TS.Extensions;
 
 namespace E_TS
 {
@@ -21,6 +23,8 @@ namespace E_TS
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("E-Services")));
+            services.AddScoped<IRepository, Repository>();
+            services.AddApplicationServices();
             services.AddControllersWithViews();
         }
 
