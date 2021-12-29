@@ -1,8 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using E_TS.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_TS.Models
 {
@@ -14,5 +11,9 @@ namespace E_TS.Models
         }
 
         public DbSet<Ticket> Tickets { get; set; }
+
+        public DbSet<ECard> ECards { get; set; }
+
+        public DbSet<Reservation> Reservations { get; set; }
     }
 }

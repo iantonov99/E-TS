@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using E_TS.Data.Seed;
+using E_TS.Models;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace E_TS
 {
@@ -13,7 +11,31 @@ namespace E_TS
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+
+            CreateDbIfNotExists(host);
+
+            host.Run();
+
+        }
+
+        private static void CreateDbIfNotExists(IHost host)
+        {
+            using(var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var context = services.GetRequiredService<ApplicationDbContext>();
+                    DbInitializer.Initialize(context);
+
+                }
+                catch (Exception ex)
+                {
+
+                    Console.WriteLine("can't initialize db");
+                }
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
