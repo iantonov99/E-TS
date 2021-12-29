@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace E_TS.Data.Models
 {
     public class ECard
     {
+        [Key]
         public int Id { get; set; }
 
         public bool IsPeriod { get; set; }

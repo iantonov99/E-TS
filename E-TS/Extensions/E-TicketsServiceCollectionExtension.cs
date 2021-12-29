@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using E_TS.Data.Models;
+using E_TS.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,17 +28,14 @@ namespace E_TS.Extensions
         /// Регистрира Identity provider в IoC контейнера
         /// </summary>
         /// <param name="services">Регистрирани услуги</param>
-        //public static void AddApplicationIdentity(this IServiceCollection services)
-        //{
-        //    services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
-        //    {
-        //        options.User.RequireUniqueEmail = false;
-        //        options.SignIn.RequireConfirmedAccount = true;
+        public static void AddApplicationIdentity(this IServiceCollection services)
+        {
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = false;
 
-        //    })
-        //    .AddUserStore<ApplicationUserStore>()
-        //    .AddRoleStore<ApplicationRoleStore>()
-        //    .AddDefaultTokenProviders();
-        //}
+            }).AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+        }
     }
 }

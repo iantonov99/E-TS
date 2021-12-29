@@ -7,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using E_TS.Data.Common;
 using E_TS.Extensions;
+using E_TS.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace E_TS
 {
@@ -23,6 +25,9 @@ namespace E_TS
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("E-Services")));
+
+            services.AddApplicationIdentity();
+
             services.AddScoped<IRepository, Repository>();
             services.AddApplicationServices();
             services.AddControllersWithViews();
@@ -46,6 +51,7 @@ namespace E_TS
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
