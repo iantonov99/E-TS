@@ -1,0 +1,28 @@
+﻿@model E_TS.ViewModels.Reservation.ReservationViewModel
+
+@{
+    ViewData["Title"] = "Добавяне на резервация";
+}
+
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Add" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(r => r.Id)
+            <div class="row">
+
+            </div>
+            <div class="row">
+                @Html.EditorFor(r => r.DateAndTime)
+            </div>
+            <div class="row">
+                @Html.EditorFor(r => r.Description)
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Добави към количката" class="btn btn-success" />
+                <a asp-action="Index" asp-controller="Reservation" class="btn btn-danger">Назад</a>
+            </div>
+        </form>
+    </div>
+</div>

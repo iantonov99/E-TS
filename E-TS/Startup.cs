@@ -7,8 +7,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using E_TS.Data.Common;
 using E_TS.Extensions;
-using E_TS.Data.Models;
-using Microsoft.AspNetCore.Identity;
+using E_TS.Contracts;
+using E_TS.Services;
 
 namespace E_TS
 {
@@ -29,6 +29,8 @@ namespace E_TS
             services.AddApplicationIdentity();
 
             services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IReservationService, ReservationService>();
+            services.AddScoped<IECardService, ECardService>();
             services.AddApplicationServices();
             services.AddControllersWithViews();
         }

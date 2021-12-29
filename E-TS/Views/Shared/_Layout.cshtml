@@ -37,10 +37,10 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Начало</a>
+                    <a href="@Url.Action("Index", "Home")" class="nav-link">Начало</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Контакти</a>
+                    <a href="@Url.Action("Contacts", "Home")" class="nav-link">Контакти</a>
                 </li>
             </ul>
 
@@ -66,7 +66,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="@Url.Action("Index", "Home")" class="brand-link">
                 <img src="~/images/ticketLogo.png" alt="Ticket Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">E-Tickets</span>
             </a>
@@ -105,10 +105,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="@Url.Action("Index", "Reservation")" class="nav-link">
                                 <i class="nav-icon fas fa-car"></i>
                                 <p>
-                                    Резервации за Spark или Ел. тротинетки
+                                    Резервации за Spark/Scooter
                                 </p>
                             </a>
                         </li>
@@ -126,7 +126,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Начало</h1>
+                            <h1 class="m-0">@ViewData["Title"]</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
