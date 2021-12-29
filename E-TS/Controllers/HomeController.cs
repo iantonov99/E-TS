@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using E_TS.Models;
 using E_TS.Data.Common;
+using E_TS.ViewModels;
 
 namespace E_TS.Controllers
 {
@@ -41,8 +42,10 @@ namespace E_TS.Controllers
         {
             var tickets = _repo.All<Ticket>().ToList();
 
+            var viewModel = new RegisterViewModel();
 
-            return View("Test");
+
+            return View("Test", viewModel);
         }
     }
 }

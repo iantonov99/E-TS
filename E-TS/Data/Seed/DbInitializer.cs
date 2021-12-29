@@ -16,10 +16,10 @@ namespace E_TS.Data.Seed
 
             var tickets = new Ticket[]
             {
-                new Ticket{Id = 1, Bus = 111},
-                new Ticket{Id = 2, Bus = 280},
-                new Ticket{Id = 3, Bus = 305},
-                new Ticket{Id = 4, Bus = 69}
+                new Ticket{Bus = 111},
+                new Ticket{Bus = 280},
+                new Ticket{Bus = 305},
+                new Ticket{Bus = 69}
             };
             context.AddRange(tickets);
             context.SaveChanges();

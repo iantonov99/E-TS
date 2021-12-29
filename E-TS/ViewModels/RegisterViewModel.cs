@@ -14,10 +14,13 @@ namespace E_TS.ViewModels
 
         [Required]
         [Display(Name = "Парола")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
         [Display(Name = "Повтори паролата")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage ="Паролите не съвпадат")]
         public string PasswordCheck { get; set; }
 
         [Required]
@@ -28,6 +31,13 @@ namespace E_TS.ViewModels
         [Display(Name = "Телефонен номер")]
         public string PhoneNumber { get; set; }
 
+        [Required]
+        [Display(Name = "Имена")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Дата на раждане")]
+        public DateTime DateOfBirth { get; set; }
 
     }
 }
