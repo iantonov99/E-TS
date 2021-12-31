@@ -8,11 +8,14 @@ namespace E_TS.ViewModels
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Полето е задължително")]
         [Display(Name = "Имейл")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Email is not valid.")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.
+                            \w+([-.]\w+)*$", ErrorMessage = "Email is not valid.")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Полето е задължително")]
         [Display(Name = "Парола")]
         [DataType(DataType.Password)]
         public string Password { get; set; }

@@ -1,0 +1,12 @@
+﻿@model DateTime?
+
+    <div class="form-group">
+        <label asp-for="@Model" class="control-label"></label>
+        <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+            <input asp-for="@Model" type="text" class="form-control datetimepicker-input" autocomplete="off" data-target="#reservationdatetime" value="@(Model.HasValue && Model.Value > DateTime.MinValue ? Model.Value.ToString("dd.MM.yyyy") : String.Empty)"/>
+            <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+        </div>
+        <span asp-validation-for="@Model" class="text-danger"></span>
+    </div>

@@ -8,34 +8,34 @@ namespace E_TS.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Полето е задължително")]
         [Display(Name = "Имейл")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Полето е задължително")]
         [Display(Name = "Парола")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Полето е задължително")]
         [Display(Name = "Повтори паролата")]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage ="Паролите не съвпадат")]
         public string PasswordCheck { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Полето е задължително")]
         [Display(Name = "Адрес")]
         public string Address { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Полето е задължително")]
         [Display(Name = "Телефонен номер")]
         public string PhoneNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Полето е задължително")]
         [Display(Name = "Имена")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Полето е задължително")]
         [Display(Name = "Дата на раждане")]
         public DateTime DateOfBirth { get; set; }
 

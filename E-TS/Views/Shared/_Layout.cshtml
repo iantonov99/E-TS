@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="~/lib/adminLTE/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="~/lib/adminLTE/plugins/summernote/summernote-bs4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="~/lib//adminLTE//plugins//toastr/toastr.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -87,7 +89,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-ticket-alt"></i>
@@ -168,6 +170,8 @@
     <script src="~/lib/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
     <script src="~/lib/adminLTE/plugins/chart.js/Chart.min.js"></script>
+    <!-- Toastr -->
+    <script src="~/lib/adminLTE/plugins/toastr/toastr.min.js"></script>
     <!-- Sparkline -->
     <script src="~/lib/adminLTE/plugins/sparklines/sparkline.js"></script>
     <!-- JQVMap -->
@@ -191,6 +195,9 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/lib/adminLTE/dist/js/pages/dashboard.js"></script>
 
+    @{
+        await Html.RenderPartialAsync("_Notifications");
+    }
     @RenderSection("Scripts", required: false)
 </body>
 </html>

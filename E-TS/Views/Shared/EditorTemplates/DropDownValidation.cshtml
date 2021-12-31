@@ -1,0 +1,18 @@
+﻿@*@model int?
+@using IOWebFramework.Core.Extensions
+
+@{
+    var fieldName = ViewData.TemplateInfo.HtmlFieldPrefix.Replace(".", "_") + "_ddl";
+}
+
+@if (ViewData[fieldName] != null)
+{
+    var ddl = (List<SelectListItem>)ViewData[fieldName];
+    <div class="form-group">
+        <label asp-for="@Model" class="control-label"></label>
+        @Html.DropDownListFor(model => model, ddl.SetSelected(Model), new { @class = "form-control", required = "required" })
+        <div class="invalid-feedback">
+            Полето е задъжително
+        </div>
+    </div>
+}*@

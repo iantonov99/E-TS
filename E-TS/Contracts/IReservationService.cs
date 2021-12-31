@@ -13,6 +13,12 @@ namespace E_TS.Contracts
         /// </summary>
         /// <returns></returns>
         List<ReservationsTableViewModel> GetReservations();
+        /// <summary>
+        /// запазване на данните в базата от данни
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        bool SaveData(ReservationViewModel model);
 
     }
 }

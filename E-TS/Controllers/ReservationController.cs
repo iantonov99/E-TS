@@ -1,6 +1,7 @@
 ﻿using E_TS.Contracts;
 using E_TS.ViewModels.Reservation;
 using Microsoft.AspNetCore.Mvc;
+using E_TS.Extensions;
 
 namespace E_TS.Controllers
 {
@@ -25,6 +26,22 @@ namespace E_TS.Controllers
             var reservation = new ReservationViewModel();
 
             return View(reservation);
+        }
+
+        [HttpPost]
+        public IActionResult Add(ReservationViewModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var result = reservationService.SaveData(model);
+
+            this.ShowNotificationOnUI(result);
+
+
+            return RedirectToAction("Index");
         }
     }
 }

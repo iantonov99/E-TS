@@ -1,0 +1,15 @@
+﻿@using E_TS.Constants
+
+@if (TempData[Constants.ErrorMessage] != null)
+{
+    <script>
+        $(function () { toastr.error('@TempData[Constants.ErrorMessage].ToString()'); });
+    </script>
+}
+
+@if (TempData[Constants.SuccessMessage] != null)
+{
+    <script>
+        $(function () { toastr.success('@TempData[Constants.SuccessMessage].ToString()'); });
+    </script>
+}

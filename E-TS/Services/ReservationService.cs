@@ -32,5 +32,49 @@ namespace E_TS.Services
 
             return result;
         }
+
+        public bool SaveData(ReservationViewModel model)
+        {
+            bool result = false;
+            Reservation entity = null;
+
+            try
+            {
+                if(model.Id > 0)
+                {
+                    entity = _repo.GetById<Reservation>(model.Id);
+                    entity.IsSpark = model.SparkOrScooter.Equals("Spark");
+                    entity.Description = model.Description;
+                    entity.DateAndTime = model.DateAndTime;
+                    entity.IsActive = true;
+                    entity.Latitude = model.Latitude;
+                    entity.Longitude = model.Longitude;
+                    entity.Price = model.Price;
+                }
+                else
+                {
+                    entity = new Reservation()
+                    {
+                        IsSpark = model.SparkOrScooter.Equals("Spark"),
+                        Description = model.Description,
+                        DateAndTime = model.DateAndTime,
+                        IsActive = true,
+                        Latitude = model.Latitude,
+                        Longitude = model.Longitude,
+                        Price = model.Price
+                    };
+                    _repo.Add(entity);
+                }
+                
+                _repo.SaveChanges();
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                //ILogger
+            }
+
+            return result;
+        }
     }
 }
