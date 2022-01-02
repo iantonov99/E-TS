@@ -18,7 +18,7 @@ namespace E_TS.ViewModels.Reservation
         [Required(ErrorMessage = "Трябва да изберете едно от двете")]
         public string SparkOrScooter { get; set; }
 
-        public string[] Options = new[] { "Спарк", "Ел. скутер" };
+        public string[] Options = new[] { "Spark", "Scooter" };
 
         [Required(ErrorMessage = "Полето е задължително")]
         [Display(Name = "Дата и час")]

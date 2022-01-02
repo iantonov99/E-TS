@@ -43,5 +43,28 @@ namespace E_TS.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Copy(int Id)
+        {
+            var reservation = reservationService.GetReservationViewModelById(Id);
+
+            return View(reservation);
+        }
+
+        [HttpPost]
+        public IActionResult Copy(ReservationViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            model.Id = 0;
+            var result = reservationService.SaveData(model);
+
+            this.ShowNotificationOnUI(result);
+
+
+            return RedirectToAction("Index");
+        }
     }
 }

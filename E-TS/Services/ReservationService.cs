@@ -17,13 +17,30 @@ namespace E_TS.Services
             _repo = repo;
         }
 
+        public bool DeleteReservation(int Id)
+        {
+            bool result = false;
+            try
+            {
+                _repo.Delete<Reservation>(Id);
+                _repo.SaveChanges();
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                //TODO ILogger
+            }
+
+            return result;
+        }
+
         public List<ReservationsTableViewModel> GetReservations()
         {
             var result = _repo.All<Reservation>()
                 .Select(r => new ReservationsTableViewModel()
                 { 
                     Id = r.Id,
-                    Address = "",
+                    Address = r.Address,
                     DateAndTime = r.DateAndTime ,
                     IsActive = r.IsActive == true ? "Да" : "Не",
                     IsSpark = r.IsSpark == true ? "Spark" : "Scooter",
@@ -31,6 +48,24 @@ namespace E_TS.Services
                 }).ToList();
 
             return result;
+        }
+
+        public ReservationViewModel GetReservationViewModelById(int Id)
+        {
+            return _repo.All<Reservation>()
+                             .Where(r => r.Id == Id)
+                             .Select(r => new ReservationViewModel()
+                             {
+                                 Id = r.Id,
+                                 Address = r.Address,
+                                 DateAndTime = r.DateAndTime,
+                                 Description = r.Description,
+                                 Latitude = r.Latitude,
+                                 Longitude = r.Longitude,
+                                 Price = r.Price,
+                                 SparkOrScooter = r.IsSpark == true ? "Spark" : "Scooter"
+                             }).FirstOrDefault();
+
         }
 
         public bool SaveData(ReservationViewModel model)
@@ -56,12 +91,14 @@ namespace E_TS.Services
                     entity = new Reservation()
                     {
                         IsSpark = model.SparkOrScooter.Equals("Spark"),
+                        Address = model.Address,
                         Description = model.Description,
                         DateAndTime = model.DateAndTime,
                         IsActive = true,
                         Latitude = model.Latitude,
                         Longitude = model.Longitude,
-                        Price = model.Price
+                        Price = model.Price,
+                        IsBought = false
                     };
                     _repo.Add(entity);
                 }

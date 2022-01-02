@@ -19,6 +19,18 @@ namespace E_TS.Contracts
         /// <param name="model"></param>
         /// <returns></returns>
         bool SaveData(ReservationViewModel model);
+        /// <summary>
+        /// взима запис от базата по идентификатор
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        ReservationViewModel GetReservationViewModelById(int Id);
+        /// <summary>
+        /// Изтрива резервация от базата данни
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        bool DeleteReservation(int Id);
 
     }
 }

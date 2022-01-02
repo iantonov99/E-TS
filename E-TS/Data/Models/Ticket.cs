@@ -13,5 +13,7 @@ namespace E_TS.Models
 
         public int Bus { get; set; }
 
+        public bool IsBought { get; set; }
+
     }
 }

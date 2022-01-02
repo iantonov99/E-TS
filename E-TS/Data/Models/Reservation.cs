@@ -11,6 +11,8 @@ namespace E_TS.Data.Models
         [Key]
         public int Id { get; set; }
 
+        public string Address { get; set; }
+
         public double Longitude { get; set; }
 
         public double Latitude { get; set; }
@@ -24,5 +26,7 @@ namespace E_TS.Data.Models
         public double Price { get; set; }
 
         public bool IsActive { get; set; }
+
+        public bool IsBought { get; set; }
     }
 }

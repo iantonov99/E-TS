@@ -20,5 +20,7 @@ namespace E_TS.Data.Models
 
         public int? Trips { get; set; }
 
+        public bool IsBought { get; set; }
+
     }
 }
