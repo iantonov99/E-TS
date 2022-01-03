@@ -4,14 +4,16 @@ using E_TS.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E_TS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220103165245_ECardTripsTableAdded")]
+    partial class ECardTripsTableAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,27 +105,19 @@ namespace E_TS.Migrations
                     b.Property<bool>("IsBought")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDeclined")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("TransportNumber")
                         .HasColumnType("int");
 
                     b.Property<int?>("TransportType")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("ValidFrom")
+                    b.Property<DateTime?>("ValidFrom")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ValidTo")
+                    b.Property<DateTime?>("ValidTo")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("ECards");
                 });
@@ -138,9 +132,6 @@ namespace E_TS.Migrations
                     b.Property<bool>("IsBought")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDeclined")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("TransportNumber")
                         .HasColumnType("int");
 
@@ -150,12 +141,7 @@ namespace E_TS.Migrations
                     b.Property<int?>("Trips")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("ECardTrips");
                 });
@@ -176,10 +162,10 @@ namespace E_TS.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsBought")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDeclined")
+                    b.Property<bool>("IsBought")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsSpark")
@@ -194,12 +180,7 @@ namespace E_TS.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Reservations");
                 });
@@ -232,20 +213,12 @@ namespace E_TS.Migrations
                     b.Property<bool>("IsBought")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDeclined")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("TicketDetailId")
                         .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TicketDetailId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Tickets");
                 });
@@ -381,44 +354,11 @@ namespace E_TS.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("E_TS.Data.Models.ECard", b =>
-                {
-                    b.HasOne("E_TS.Data.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("ApplicationUser");
-                });
-
-            modelBuilder.Entity("E_TS.Data.Models.ECardTrips", b =>
-                {
-                    b.HasOne("E_TS.Data.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("ApplicationUser");
-                });
-
-            modelBuilder.Entity("E_TS.Data.Models.Reservation", b =>
-                {
-                    b.HasOne("E_TS.Data.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("ApplicationUser");
-                });
-
             modelBuilder.Entity("E_TS.Models.Ticket", b =>
                 {
                     b.HasOne("E_TS.Data.Models.TicketDetails", "TicketDetail")
                         .WithMany()
                         .HasForeignKey("TicketDetailId");
-
-                    b.HasOne("E_TS.Data.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("ApplicationUser");
 
                     b.Navigation("TicketDetail");
                 });

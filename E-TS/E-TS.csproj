@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20211229132630_Add-Identity.cs" />
     <Compile Remove="Migrations\20211229132630_Add-Identity.Designer.cs" />
+    <Compile Remove="Migrations\20220103194047_zero.cs" />
+    <Compile Remove="Migrations\20220103194047_zero.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

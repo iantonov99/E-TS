@@ -28,10 +28,10 @@ namespace E_TS.Data.Seed
             {
                 var reservations = new Reservation[]
                 {
-                    new Reservation{DateAndTime = DateTime.UtcNow.AddDays(2), Description="", IsActive = true, IsSpark = true, Latitude = 25.345345, Longitude = 34.53346, Price= 2.80},
-                    new Reservation{DateAndTime = DateTime.UtcNow.AddDays(1), Description="", IsActive = false, IsSpark = false, Latitude = 25.345345, Longitude = 34.53346, Price= 5.00},
-                    new Reservation{DateAndTime = DateTime.UtcNow.AddDays(2).AddHours(5), Description="", IsActive = true, IsSpark = false, Latitude = 25.345345, Longitude = 34.53346, Price= 3.60},
-                    new Reservation{DateAndTime = DateTime.UtcNow.AddDays(3), Description="", IsActive = false, IsSpark = true, Latitude = 25.345345, Longitude = 34.53346, Price= 5.20},
+                    new Reservation{DateAndTime = DateTime.UtcNow.AddDays(2), Description="", IsDeclined = true, IsSpark = true, Latitude = 25.345345, Longitude = 34.53346, Price= 2.80},
+                    new Reservation{DateAndTime = DateTime.UtcNow.AddDays(1), Description="", IsDeclined = false, IsSpark = false, Latitude = 25.345345, Longitude = 34.53346, Price= 5.00},
+                    new Reservation{DateAndTime = DateTime.UtcNow.AddDays(2).AddHours(5), Description="", IsDeclined = true, IsSpark = false, Latitude = 25.345345, Longitude = 34.53346, Price= 3.60},
+                    new Reservation{DateAndTime = DateTime.UtcNow.AddDays(3), Description="", IsDeclined = false, IsSpark = true, Latitude = 25.345345, Longitude = 34.53346, Price= 5.20},
                 };
                 context.AddRange(reservations);
                 context.SaveChanges();

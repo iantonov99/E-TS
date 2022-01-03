@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<E_TS.Data.Models.ApplicationUser> signInManager;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -49,15 +51,24 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="btn btn-primary" href="@Url.Action("Login", "Account")">Влизане</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="btn btn-primary" href="@Url.Action("Register", "Account")">Регистриране</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="btn btn-primary" href="@Url.Action("Index", "Cart")"><i class="fas fa-shopping-cart"></i></a>
-                </li>
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <li class="nav-item dropdown" style="margin-right: 25px;">
+                        <a class="btn btn-primary" href="@Url.Action("Logout", "Account")">Изход</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="btn btn-primary" href="@Url.Action("Index", "Cart")"><i class="fas fa-shopping-cart"></i></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item dropdown" style="margin-right: 25px;">
+                        <a class="btn btn-primary" href="@Url.Action("Login", "Account")">Вход</a>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-right: 25px;">
+                        <a class="btn btn-primary" href="@Url.Action("Register", "Account")">Регистрация</a>
+                    </li>
+                }
 
             </ul>
         </nav>

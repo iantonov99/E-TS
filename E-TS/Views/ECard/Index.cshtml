@@ -1,60 +1,53 @@
-﻿@{
+﻿@model E_TS.ViewModels.ECard.ECardsViewModel
+@{
     ViewData["Title"] = "Електронни карти";
 }
 
-    <div class="card card-primary card-tabs">
-        <div class="card-header p-0 pt-1">
-            <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#period" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Карта за период</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#trips" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Карта за пътувания</a>
-                </li>
-            </ul>
-        </div>
-        <div class="card-body">
-            <div class="tab-content" id="custom-tabs-one-tabContent">
-                <div class="tab-pane fade show active col-md-12" id="period" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
-                    @* снимка на картата
-                    тодолу бутон за зареждане
-                    отдясно основна информация за картата*@
-
-                    <div style="width: 50%; float:left">
-                        <img src="~/images/transportcard.jpg" alt="Transport Card" class="btn-block"/>
-                        <br />
-                        <button type="button" class="btn btn-block bg-gradient-primary btn-sm">Презареди</button>
-                    </div>
-                    <div style="padding-left: 50px; width: 50%; float: right ">
-                        <img /> @*снимка на човека*@
-                        <label>Име: Калоян Дуцолов</label><br />
-                        <label>Години: 22</label><br />
-                        <label>Пол: Мъж</label><br />
-                        <label>Карта номер: </label><br />
-                        <label>Валидна до: </label><br />
-                        <label>Транспорт: </label><br />
-                        <label>Оставащо време: </label>
-                    </div>
+<div class="card card-primary card-tabs">
+    <div class="card-header p-0 pt-1">
+        <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#period" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Карта за период</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#trips" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Карта за пътувания</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="tab-content" id="custom-tabs-one-tabContent">
+            <div class="tab-pane fade show active col-md-12" id="period" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                <div style="width: 50%; float:left">
+                    <img src="~/images/transportcard.jpg" alt="Transport Card" class="btn-block" />
+                    <br />
+                    <button type="button" class="btn btn-block bg-gradient-primary btn-sm">Презареди</button>
                 </div>
-                <div class="tab-pane fade" id="trips" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-                    @* същото като горе гд *@
-                    <div style="width: 50%; float:left">
-                        <img src="~/images/transportcard2.jpg" alt="Transport Card" class="btn-block"/>
-                        <br />
-                        <button type="button" class="btn btn-block bg-gradient-primary btn-sm">Презареди</button>
-                    </div>
-                    <div style=" padding-left: 50px; width: 50%; float: right">
-                        <img /> @*снимка на човека*@
-                        <label>Име: Калоян Дуцолов</label><br />
-                        <label>Години: 22</label><br />
-                        <label>Пол: Мъж</label><br />
-                        <label>Карта номер: </label><br />
-                        <label>Валидна до: </label><br />
-                        <label>Транспорт: </label><br />
-                        <label>Оставащи пътувания: </label>
-                    </div>
+                <div style="padding-left: 50px; width: 50%; float: right ">
+                    <img /> @*снимка на човека*@
+                    <label>Име: @Html.DisplayFor(c => c.UserViewModel.Name)</label><br />
+                    <label>Години: @Html.DisplayFor(c => c.UserViewModel.Age)</label><br />
+                    <label>Валидна от: @Html.DisplayFor(c => c.ECardViewModel.ValidFrom)</label><br />
+                    <label>Валидна до: @Html.DisplayFor(c => c.ECardViewModel.ValidTo)</label><br />
+                    <label>Превозно средство: @Html.DisplayFor(c => c.ECardViewModel.TransportType)</label><br />
+                    <label>Линия: @Html.DisplayFor(c => c.ECardViewModel.TransportNumber)</label>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="trips" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                <div style="width: 50%; float:left">
+                    <img src="~/images/transportcard2.jpg" alt="Transport Card" class="btn-block" />
+                    <br />
+                    <button type="button" class="btn btn-block bg-gradient-primary btn-sm">Презареди</button>
+                </div>
+                <div style=" padding-left: 50px; width: 50%; float: right">
+                    <img /> @*снимка на човека*@
+                    <label>Име: @Html.DisplayFor(c => c.UserViewModel.Name)</label><br />
+                    <label>Години: @Html.DisplayFor(c => c.UserViewModel.Age)</label><br />
+                    <label>Пътувания: @Html.DisplayFor(c => c.ECardTripsViewModel.Trips)</label><br />
+                    <label>Превозно средство: @Html.DisplayFor(c => c.ECardTripsViewModel.TransportType)</label><br />
+                    <label>Линия: @Html.DisplayFor(c => c.ECardTripsViewModel.TransportNumber)</label>
                 </div>
             </div>
         </div>
-        <!-- /.card -->
     </div>
+    <!-- /.card -->
+</div>
