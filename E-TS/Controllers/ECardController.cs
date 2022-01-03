@@ -12,5 +12,29 @@ namespace E_TS.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult CreateCard()
+        {
+            //Save to Db
+            return RedirectToAction("Index", "ECard");
+        }
+
+        public IActionResult Recharge()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RechargeCard(int Id)
+        {
+            //Change Row in Db and set isBought to false
+            return RedirectToAction("Index", "ECard");
+        }
+
+        public IActionResult RechargeTrips()
+        {
+            return View();
+        }
     }
 }
