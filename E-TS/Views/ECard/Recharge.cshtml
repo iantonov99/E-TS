@@ -1,0 +1,42 @@
+﻿<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Зареждане на карта</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form role="form">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Тип Транспорт:</label>
+                <select name="тип" id="typeOfTransport">
+                    <option>Метро</option>
+                    <option>Автобус</option>
+                    <option>Тролейбус</option>
+                    <option>Трамвай</option>
+                    <option>Всичко</option>
+                </select>            
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Номер на транспорта: </label>
+                <select name="линия" id="transportLine">
+                    <option>280</option>
+                    <option>94</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Изберете период: </label><br />
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-clock"></i></span>
+                    </div>
+                    <input type="text" class="form-control float-right" id="reservationtime">
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Презареди</button>
+        </div>
+    </form>
+</div>
