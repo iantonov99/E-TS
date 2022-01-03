@@ -8,10 +8,10 @@ namespace E_TS.ViewModels.Reservation
 {
     public class TicketViewModel
     {
-        public int Id { get; set; }
-
         public bool IsBought { get; set; }
 
-        public TicketDetails TicketDetails { get; set; }
+        public string TicketPrice { get; set; }
+
+        public string TicketName { get; set; }
     }
 }

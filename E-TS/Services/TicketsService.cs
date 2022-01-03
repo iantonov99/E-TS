@@ -40,9 +40,9 @@ namespace E_TS.Services
             var results = _repo.All<Ticket>()
                 .Select(r => new TicketViewModel()
                 {
-                    Id = r.Id,
                     IsBought = r.IsBought,
-                    TicketDetails = r.TicketDetail
+                    TicketPrice = r.TicketDetail.TicketPrice.ToString(),
+                    TicketName = r.TicketDetail.TicketName
                 }).ToList();
 
             return results;
