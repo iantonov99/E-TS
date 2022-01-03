@@ -66,9 +66,10 @@ namespace E_TS.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult login()
+        public IActionResult Login()
         {
-            return View();
+            var model = new LoginViewModel();
+            return View(model);
         }
 
         [HttpPost]

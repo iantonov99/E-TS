@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Количка";
+    string[] TableHeaders = new string[] { "Продукт", "Цена", "Действия" };
+}
+
+
+<div class="table">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                @foreach (var header in TableHeaders)
+                {
+                    <th>
+                        @header
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var r in Model)
+                {
+                    <tr>
+                        <td>Продукт</td> @*TODO change with new view model*@
+                        <td>@r.Price</td>
+                        <td>
+                            <a href="@Url.Action("Delete", "Cart")/@r.Id" class="btn btn-warning">X</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<div class="row">
+</div>
+<div class="col-md-12 text-right pb-15">
+    <label>
+        Общо: @*TODO calculate sum*@
+    </label>
+</div>
+<div class="col-md-12 text-right pb-15">
+    <a asp-action="Add" class="btn btn-success">
+        <i class="fa fa-plus"></i>
+        Закупи
+    </a>
+</div>
