@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace E_TS.Data.Models
 {
-    public class ECard
+    public class ECardTrips
     {
         [Key]
         public int Id { get; set; }
@@ -13,9 +16,7 @@ namespace E_TS.Data.Models
 
         public int? TransportNumber { get; set; }
 
-        public DateTime ValidFrom { get; set; }
-
-        public DateTime ValidTo { get; set; }
+        public int? Trips { get; set; }
 
         public bool IsBought { get; set; }
 
@@ -25,6 +26,5 @@ namespace E_TS.Data.Models
         public virtual string UserId { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
-
     }
 }

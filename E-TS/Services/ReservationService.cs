@@ -42,7 +42,6 @@ namespace E_TS.Services
                     Id = r.Id,
                     Address = r.Address,
                     DateAndTime = r.DateAndTime ,
-                    IsActive = r.IsActive == true ? "Да" : "Не",
                     IsSpark = r.IsSpark == true ? "Spark" : "Scooter",
                     Price = r.Price
                 }).ToList();
@@ -81,7 +80,7 @@ namespace E_TS.Services
                     entity.IsSpark = model.SparkOrScooter.Equals("Spark");
                     entity.Description = model.Description;
                     entity.DateAndTime = model.DateAndTime;
-                    entity.IsActive = true;
+                    entity.IsDeclined = false;
                     entity.Latitude = model.Latitude;
                     entity.Longitude = model.Longitude;
                     entity.Price = model.Price;
@@ -94,7 +93,7 @@ namespace E_TS.Services
                         Address = model.Address,
                         Description = model.Description,
                         DateAndTime = model.DateAndTime,
-                        IsActive = true,
+                        IsDeclined = false,
                         Latitude = model.Latitude,
                         Longitude = model.Longitude,
                         Price = model.Price,

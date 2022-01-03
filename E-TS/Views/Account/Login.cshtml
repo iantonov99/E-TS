@@ -1,0 +1,37 @@
+﻿@model E_TS.ViewModels.LoginViewModel
+
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Влизане в профил</h3>
+    </div>
+    <form asp-action="Login" method="post" class="form-horizontal">
+        <div class="card-body">
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Имейл</label>
+                <div class="col-sm-10">
+                    <input type="email" asp-for="@Model.Email" class="form-control" id="inputEmail3" placeholder="Имейл">
+                    <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Парола</label>
+                <div class="col-sm-10">
+                    <input type="password" asp-for="@Model.Password" class="form-control" id="inputPassword3" placeholder="Парола">
+                    <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10">
+                    <div class="form-check">
+                        <input type="checkbox" asp-for="@Model.RememberMe" class="form-check-input" id="exampleCheck2">
+                        <label class="form-check-label" for="exampleCheck2">Запомни ме</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-info">Влез</button>
+            <a asp-action="Index" asp-controller="Home" class="btn btn-danger">Откажи</a>
+        </div>
+    </form>
+</div>

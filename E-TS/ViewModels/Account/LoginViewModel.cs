@@ -10,9 +10,6 @@ namespace E_TS.ViewModels
     {
         [Required(ErrorMessage = "Полето е задължително")]
         [Display(Name = "Имейл")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Email is not valid.")]
-        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.
-                            \w+([-.]\w+)*$", ErrorMessage = "Email is not valid.")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Полето е задължително")]

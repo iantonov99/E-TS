@@ -66,9 +66,10 @@ namespace E_TS.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult login()
+        public IActionResult Login()
         {
-            return View();
+            var model = new LoginViewModel();
+            return View(model);
         }
 
         [HttpPost]
@@ -88,6 +89,12 @@ namespace E_TS.Controllers
                 return View(model);
             }
 
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
     }
