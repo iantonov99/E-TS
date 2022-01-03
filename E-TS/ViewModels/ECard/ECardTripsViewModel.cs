@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace E_TS.ViewModels.ECard
 {
@@ -12,7 +13,15 @@ namespace E_TS.ViewModels.ECard
         [Display(Name = "Линия")]
         public int? TransportNumber { get; set; }
 
+        public int TransportNumberName { get; set; }
+
         [Display(Name = "Оставащи пътувания")]
-        public int? Trips { get; set; }
+        public int Trips { get; set; }
+
+        public string UserId { get; set; }
+
+        public SelectList TransportTypes { get; set; }
+
+        public SelectList TransportLines { get; set; }
     }
 }

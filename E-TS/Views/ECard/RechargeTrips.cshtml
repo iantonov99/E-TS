@@ -1,10 +1,13 @@
-﻿<div class="card card-primary">
+﻿@model E_TS.ViewModels.ECard.ECardTripsViewModel
+
+<div class="card card-primary">
     <div class="card-header">
         <h3 class="card-title">Зареждане на карта</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form role="form">
+    <form asp-action="RechargeTrips" method="post" role="form">
+        @Html.HiddenFor(c => c.UserId)
         <div class="card-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Тип Транспорт:</label>
@@ -31,7 +34,7 @@
         <!-- /.card-body -->
 
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Презареди</button>
+            <button type="submit" class="btn btn-primary">Зареди</button>
         </div>
     </form>
 </div>

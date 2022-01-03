@@ -31,6 +31,7 @@ namespace E_TS
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IReservationService, ReservationService>();
             services.AddScoped<IECardService, ECardService>();
+            services.AddScoped<IDropDownService, DropDownService>();
             services.AddApplicationServices();
             services.AddControllersWithViews();
         }

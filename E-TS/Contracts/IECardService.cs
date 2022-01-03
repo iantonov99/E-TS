@@ -8,7 +8,11 @@ namespace E_TS.Contracts
 {
     public interface IECardService
     {
-        ECardsViewModel GetECardsViewModel();
+        ECardsViewModel GetECardsViewModel(string userId);
+
+        bool SaveData(ECardViewModel model);
+
+        bool SaveDataTrips(ECardTripsViewModel model);
 
     }
 }

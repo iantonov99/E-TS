@@ -1,5 +1,8 @@
 ﻿@model E_TS.ViewModels.ECard.ECardsViewModel
 @{
+    var hasCardPeriod = Model.ECardViewModel != null ? true : false;
+    var hasCardTrips = Model.ECardTripsViewModel != null ? true : false;
+    var transports = E_TS.Constants.Constants.Transports;
     ViewData["Title"] = "Електронни карти";
 }
 
@@ -20,31 +23,53 @@
                 <div style="width: 50%; float:left">
                     <img src="~/images/transportcard.jpg" alt="Transport Card" class="btn-block" />
                     <br />
-                    <button type="button" class="btn btn-block bg-gradient-primary btn-sm">Презареди</button>
+                    @if (hasCardPeriod)
+                    {
+                        <a href="@Url.Action("Recharge", "ECard")" class="btn btn-block bg-gradient-primary btn-sm col-md-3">Презареди</a>
+                    }
                 </div>
                 <div style="padding-left: 50px; width: 50%; float: right ">
-                    <img /> @*снимка на човека*@
-                    <label>Име: @Html.DisplayFor(c => c.UserViewModel.Name)</label><br />
-                    <label>Години: @Html.DisplayFor(c => c.UserViewModel.Age)</label><br />
-                    <label>Валидна от: @Html.DisplayFor(c => c.ECardViewModel.ValidFrom)</label><br />
-                    <label>Валидна до: @Html.DisplayFor(c => c.ECardViewModel.ValidTo)</label><br />
-                    <label>Превозно средство: @Html.DisplayFor(c => c.ECardViewModel.TransportType)</label><br />
-                    <label>Линия: @Html.DisplayFor(c => c.ECardViewModel.TransportNumber)</label>
+                    @if (!hasCardPeriod)
+                    {
+                        <label>Нямате все още закупена карта. Може да закупите нова карта като натиснете този бутон.</label>
+                        <a href="@Url.Action("CreateCard", "ECard")/@Model.ECardViewModel?.Id" class="btn btn-success">Купи карта</a>
+                    }
+                    else
+                    {
+                        <img /> @*снимка на човека*@
+                        <label>Име: @Html.DisplayFor(c => c.UserViewModel.Name)</label><br />
+                        <label>Години: @Html.DisplayFor(c => c.UserViewModel.Age)</label><br />
+                        <label>Валидна от: @Html.DisplayFor(c => c.ECardViewModel.ValidFrom)</label><br />
+                        <label>Валидна до: @Html.DisplayFor(c => c.ECardViewModel.ValidTo)</label><br />
+                        <label>Превозно средство: @transports[Model.ECardViewModel.TransportType.GetValueOrDefault(0)]</label><br />
+                        <label>Линия: @Html.DisplayFor(c => c.ECardViewModel.TransportNumberName)</label>
+                    }
                 </div>
             </div>
             <div class="tab-pane fade" id="trips" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                 <div style="width: 50%; float:left">
                     <img src="~/images/transportcard2.jpg" alt="Transport Card" class="btn-block" />
                     <br />
-                    <button type="button" class="btn btn-block bg-gradient-primary btn-sm">Презареди</button>
+                    @if (hasCardTrips)
+                    {
+                        <a href="@Url.Action("RechargeTrips", "ECard")" class="btn btn-block bg-gradient-primary btn-sm col-md-3">Презареди</a>
+                    }
                 </div>
                 <div style=" padding-left: 50px; width: 50%; float: right">
-                    <img /> @*снимка на човека*@
-                    <label>Име: @Html.DisplayFor(c => c.UserViewModel.Name)</label><br />
-                    <label>Години: @Html.DisplayFor(c => c.UserViewModel.Age)</label><br />
-                    <label>Пътувания: @Html.DisplayFor(c => c.ECardTripsViewModel.Trips)</label><br />
-                    <label>Превозно средство: @Html.DisplayFor(c => c.ECardTripsViewModel.TransportType)</label><br />
-                    <label>Линия: @Html.DisplayFor(c => c.ECardTripsViewModel.TransportNumber)</label>
+                    @if (!hasCardTrips)
+                    {
+                        <label>Нямате все още закупена карта. Може да закупите нова карта като натиснете този бутон.</label>
+                        <a href="@Url.Action("CreateTrips", "ECard")/@Model.ECardTripsViewModel?.Id" class="btn btn-success">Купи карта</a>
+                    }
+                    else
+                    {
+                        <img /> @*снимка на човека*@
+                        <label>Име: @Html.DisplayFor(c => c.UserViewModel.Name)</label><br />
+                        <label>Години: @Html.DisplayFor(c => c.UserViewModel.Age)</label><br />
+                        <label>Пътувания: @Html.DisplayFor(c => c.ECardTripsViewModel.Trips)</label><br />
+                        <label>Превозно средство: @transports[Model.ECardTripsViewModel.TransportType.GetValueOrDefault(0)]</label><br />
+                        <label>Линия: @Html.DisplayFor(c => c.ECardTripsViewModel.TransportNumberName)</label>
+                    }
                 </div>
             </div>
         </div>

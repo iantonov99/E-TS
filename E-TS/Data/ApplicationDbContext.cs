@@ -18,5 +18,9 @@ namespace E_TS.Models
         public DbSet<ECardTrips> ECardTrips { get; set; }
 
         public DbSet<Reservation> Reservations { get; set; }
+
+        public DbSet<TransportType> TransportTypes { get; set; }
+
+        public DbSet<TransportLines> TransportLines { get; set; }
     }
 }

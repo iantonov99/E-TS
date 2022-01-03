@@ -1,42 +1,50 @@
-﻿<div class="card card-primary">
+﻿@model E_TS.ViewModels.ECard.ECardViewModel
+
+<div class="card card-primary">
     <div class="card-header">
         <h3 class="card-title">Зареждане на карта</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form role="form">
+    <form asp-action="RechargeCard" method="post" role="form">
+        @Html.HiddenFor(c => c.UserId)
+        @Html.HiddenFor(c => c.Id)
         <div class="card-body">
             <div class="form-group">
-                <label for="exampleInputEmail1">Тип Транспорт:</label>
-                <select name="тип" id="typeOfTransport">
-                    <option>Метро</option>
-                    <option>Автобус</option>
-                    <option>Тролейбус</option>
-                    <option>Трамвай</option>
-                    <option>Всичко</option>
-                </select>            
+                <label for="transportType">Превозно срество: </label>
+                @Html.DropDownListFor(n => n.TransportType, Model.TransportTypes, "Всички")
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Номер на транспорта: </label>
-                <select name="линия" id="transportLine">
-                    <option>280</option>
-                    <option>94</option>
-                </select>
+                <label for="numberOfTransport">Номер на транспорта: </label>
+                @Html.DropDownListFor(n => n.TransportNumber, Model.TransportLines, "Всички")
             </div>
             <div class="form-group">
-                <label>Изберете период: </label><br />
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="far fa-clock"></i></span>
+                @Html.EditorFor(r => r.ValidFrom, "DateTime")
+            </div>
+            <div class="form-group row">
+                <label asp-for="@Model.ValidTo" class="col-form-label">Валидна до</label>
+                <div class="input-group date" id="validTo" data-target-input="nearest">
+                    <input asp-for="@Model.ValidTo" type="text" class="form-control datetimepicker-input" autocomplete="off" data-target="#validTo" value="@(Model.ValidTo > DateTime.MinValue ? Model.ValidTo.ToString("dd.MM.yyyy") : String.Empty)" />
+                    <div class="input-group-append" data-target="#validTo" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
-                    <input type="text" class="form-control float-right" id="reservationtime">
                 </div>
+                <span asp-validation-for="@Model.ValidTo" class="text-danger"></span>
             </div>
         </div>
         <!-- /.card-body -->
 
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Презареди</button>
+            <button type="submit" class="btn btn-primary">Зареди</button>
         </div>
     </form>
 </div>
+
+@section scripts {
+    <script>
+        (function () {
+            $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' }, autoclose: true });
+            $('#validTo').datetimepicker({ icons: { time: 'far fa-clock' }, autoclose: true });
+        })();
+    </script>
+}

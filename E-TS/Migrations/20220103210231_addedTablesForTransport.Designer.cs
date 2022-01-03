@@ -4,14 +4,16 @@ using E_TS.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E_TS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220103210231_addedTablesForTransport")]
+    partial class addedTablesForTransport
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,10 +108,10 @@ namespace E_TS.Migrations
                     b.Property<bool>("IsDeclined")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("TransportNumber")
+                    b.Property<int>("TransportNumber")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TransportTypeId")
+                    b.Property<int>("TransportType")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
@@ -122,10 +124,6 @@ namespace E_TS.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TransportNumber");
-
-                    b.HasIndex("TransportTypeId");
 
                     b.HasIndex("UserId");
 
@@ -145,10 +143,10 @@ namespace E_TS.Migrations
                     b.Property<bool>("IsDeclined")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("TransportNumber")
+                    b.Property<int>("TransportNumber")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TransportTypeId")
+                    b.Property<int>("TransportType")
                         .HasColumnType("int");
 
                     b.Property<int>("Trips")
@@ -158,10 +156,6 @@ namespace E_TS.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TransportNumber");
-
-                    b.HasIndex("TransportTypeId");
 
                     b.HasIndex("UserId");
 
@@ -426,44 +420,20 @@ namespace E_TS.Migrations
 
             modelBuilder.Entity("E_TS.Data.Models.ECard", b =>
                 {
-                    b.HasOne("E_TS.Data.Models.TransportLines", "TransportLine")
-                        .WithMany()
-                        .HasForeignKey("TransportNumber");
-
-                    b.HasOne("E_TS.Data.Models.TransportType", "TransportType")
-                        .WithMany()
-                        .HasForeignKey("TransportTypeId");
-
                     b.HasOne("E_TS.Data.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("ApplicationUser");
-
-                    b.Navigation("TransportLine");
-
-                    b.Navigation("TransportType");
                 });
 
             modelBuilder.Entity("E_TS.Data.Models.ECardTrips", b =>
                 {
-                    b.HasOne("E_TS.Data.Models.TransportLines", "TransportLine")
-                        .WithMany()
-                        .HasForeignKey("TransportNumber");
-
-                    b.HasOne("E_TS.Data.Models.TransportType", "TransportType")
-                        .WithMany()
-                        .HasForeignKey("TransportTypeId");
-
                     b.HasOne("E_TS.Data.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("ApplicationUser");
-
-                    b.Navigation("TransportLine");
-
-                    b.Navigation("TransportType");
                 });
 
             modelBuilder.Entity("E_TS.Data.Models.Reservation", b =>
