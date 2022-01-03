@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using E_TS.Contracts;
+using E_TS.ViewModels.Reservation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,11 +11,23 @@ namespace E_TS.Controllers
 {
     public class TicketsController : Controller
     {
-        // GET: TicketsController
-        public ActionResult Index()
-        {
+        private readonly ITicketsService ticketService; 
 
-            return View();
+        public TicketsController(ITicketsService ticketService)
+        {
+            this.ticketService = ticketService;
+        }
+        // GET: TicketsController
+        public IActionResult Index()
+        {
+            var allTickets = ticketService.GetTickets();
+            return View(allTickets);
+        }
+
+        [IgnoreAntiforgeryToken]
+        public ActionResult SaveTicket([FromBody] TicketViewModel model)
+        {
+            return RedirectToAction("Index");
         }
 
         // GET: TicketsController/Details/5
