@@ -1,19 +1,18 @@
-﻿using E_TS.Data.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace E_TS.Models
+namespace E_TS.Data.Models
 {
-    public class Ticket
+    public class TicketDetails
     {
         [Key]
         public int Id { get; set; }
 
-        public bool IsBought { get; set; }
+        public decimal TicketPrice { get; set; }
 
-        public TicketDetails TicketDetail { get; set; }
+        public string TicketName { get; set; }
     }
 }

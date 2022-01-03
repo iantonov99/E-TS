@@ -1,19 +1,17 @@
 ﻿using E_TS.Data.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace E_TS.Models
+namespace E_TS.ViewModels.Reservation
 {
-    public class Ticket
+    public class TicketViewModel
     {
-        [Key]
         public int Id { get; set; }
 
         public bool IsBought { get; set; }
 
-        public TicketDetails TicketDetail { get; set; }
+        public TicketDetails TicketDetails { get; set; }
     }
 }
