@@ -12,7 +12,7 @@ namespace E_TS.Contracts
         /// метод за взимане на всички редове от базата за резервации
         /// </summary>
         /// <returns></returns>
-        List<ReservationsTableViewModel> GetReservations();
+        List<ReservationsTableViewModel> GetReservations(string UserId);
         /// <summary>
         /// запазване на данните в базата от данни
         /// </summary>

@@ -15,5 +15,9 @@ namespace E_TS.Constants
             public const string SaveOk = "Записът премина успешно";
             public const string SavedFailed = "Проблемпо време на запис";
         }
+
+        public static string[] Transports = { "Всички", "Трамвай", "Тролей", "Автобус", "Метро" };
+
+
     }
 }

@@ -2,28 +2,34 @@
 using E_TS.ViewModels.Reservation;
 using Microsoft.AspNetCore.Mvc;
 using E_TS.Extensions;
+using Microsoft.AspNetCore.Identity;
+using E_TS.Data.Models;
 
 namespace E_TS.Controllers
 {
     public class ReservationController : Controller
     {
         private readonly IReservationService reservationService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public ReservationController(IReservationService reservationService)
+        public ReservationController(IReservationService reservationService, UserManager<ApplicationUser> userManager)
         {
             this.reservationService = reservationService;
+            this.userManager = userManager;
         }
 
         public IActionResult Index()
         {
-            var reservations = reservationService.GetReservations();
+            //var user = await userManager.FindByNameAsync(User.Identity.Name);
+            var reservations = reservationService.GetReservations("");
 
             return View(reservations);
         }
 
         public IActionResult Add()
         {
-            var reservation = new ReservationViewModel();
+            //var user = await userManager.FindByNameAsync(User.Identity.Name);
+            var reservation = new ReservationViewModel { UserId = "" };
 
             return View(reservation);
         }

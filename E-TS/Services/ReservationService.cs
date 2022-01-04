@@ -34,7 +34,7 @@ namespace E_TS.Services
             return result;
         }
 
-        public List<ReservationsTableViewModel> GetReservations()
+        public List<ReservationsTableViewModel> GetReservations(string UserId)
         {
             var result = _repo.All<Reservation>()
                 .Select(r => new ReservationsTableViewModel()
@@ -62,7 +62,8 @@ namespace E_TS.Services
                                  Latitude = r.Latitude,
                                  Longitude = r.Longitude,
                                  Price = r.Price,
-                                 SparkOrScooter = r.IsSpark == true ? "Spark" : "Scooter"
+                                 SparkOrScooter = r.IsSpark == true ? "Spark" : "Scooter",
+                                 UserId = r.UserId
                              }).FirstOrDefault();
 
         }

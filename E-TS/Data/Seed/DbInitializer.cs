@@ -37,6 +37,33 @@ namespace E_TS.Data.Seed
                 context.SaveChanges();
             }
 
+            if (!context.TransportTypes.Any())
+            {
+                var types = new TransportType[]
+                {
+                    new TransportType{Type = "Трамвай"},
+                    new TransportType{Type = "Тролей"},
+                    new TransportType{Type = "Автобус"},
+                    new TransportType{Type = "Метро"}
+                };
+                context.AddRange(types);
+                context.SaveChanges();
+            }
+
+            if (!context.TransportLines.Any())
+            {
+                var lines = new TransportLines[]
+                {
+                    new TransportLines{Number = 7, TransportTypeId = 1},
+                    new TransportLines{Number = 280, TransportTypeId = 3},
+                    new TransportLines{Number = 94, TransportTypeId = 3},
+                    new TransportLines{Number = 111, TransportTypeId = 3},
+                    new TransportLines{Number = 5, TransportTypeId = 1},
+                };
+                context.AddRange(lines);
+                context.SaveChanges();
+            }
+
 
         }
     }

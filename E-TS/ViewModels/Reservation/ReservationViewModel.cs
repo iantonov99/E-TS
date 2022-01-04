@@ -33,5 +33,7 @@ namespace E_TS.ViewModels.Reservation
         [Required(ErrorMessage ="Полето е задължително")]
         [Display(Name = "Адрес")]
         public string Address { get; set; }
+
+        public string UserId { get; set; }
     }
 }

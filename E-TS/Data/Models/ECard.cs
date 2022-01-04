@@ -9,9 +9,15 @@ namespace E_TS.Data.Models
         [Key]
         public int Id { get; set; }
 
-        public int? TransportType { get; set; }
+        [ForeignKey("TransportType")]
+        public virtual int? TransportTypeId { get; set; }
 
-        public int? TransportNumber { get; set; }
+        public virtual TransportType TransportType { get; set; }
+
+        [ForeignKey("TransportLine")]
+        public virtual int? TransportNumber { get; set; }
+
+        public virtual TransportLines TransportLine { get; set; }
 
         public DateTime ValidFrom { get; set; }
 
