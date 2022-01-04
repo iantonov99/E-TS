@@ -4,14 +4,16 @@ using E_TS.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E_TS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220103233441_Add StartDateAndEndDate")]
+    partial class AddStartDateAndEndDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,13 +108,10 @@ namespace E_TS.Migrations
                     b.Property<bool>("IsDeclined")
                         .HasColumnType("bit");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
                     b.Property<int?>("TransportNumber")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TransportTypeId")
+                    b.Property<int?>("TransportType")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
@@ -125,10 +124,6 @@ namespace E_TS.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TransportNumber");
-
-                    b.HasIndex("TransportTypeId");
 
                     b.HasIndex("UserId");
 
@@ -148,26 +143,19 @@ namespace E_TS.Migrations
                     b.Property<bool>("IsDeclined")
                         .HasColumnType("bit");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
                     b.Property<int?>("TransportNumber")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TransportTypeId")
+                    b.Property<int?>("TransportType")
                         .HasColumnType("int");
 
-                    b.Property<int>("Trips")
+                    b.Property<int?>("Trips")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TransportNumber");
-
-                    b.HasIndex("TransportTypeId");
 
                     b.HasIndex("UserId");
 
@@ -236,41 +224,6 @@ namespace E_TS.Migrations
                     b.ToTable("TicketDetails");
                 });
 
-            modelBuilder.Entity("E_TS.Data.Models.TransportLines", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TransportTypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TransportTypeId");
-
-                    b.ToTable("TransportLines");
-                });
-
-            modelBuilder.Entity("E_TS.Data.Models.TransportType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TransportTypes");
-                });
-
             modelBuilder.Entity("E_TS.Models.Ticket", b =>
                 {
                     b.Property<int>("Id")
@@ -278,8 +231,8 @@ namespace E_TS.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("EndDate")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsBought")
                         .HasColumnType("bit");
@@ -287,17 +240,14 @@ namespace E_TS.Migrations
                     b.Property<bool>("IsDeclined")
                         .HasColumnType("bit");
 
-                    b.Property<string>("StartDate")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("TicketDetailId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("isExpired")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -441,44 +391,20 @@ namespace E_TS.Migrations
 
             modelBuilder.Entity("E_TS.Data.Models.ECard", b =>
                 {
-                    b.HasOne("E_TS.Data.Models.TransportLines", "TransportLine")
-                        .WithMany()
-                        .HasForeignKey("TransportNumber");
-
-                    b.HasOne("E_TS.Data.Models.TransportType", "TransportType")
-                        .WithMany()
-                        .HasForeignKey("TransportTypeId");
-
                     b.HasOne("E_TS.Data.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("ApplicationUser");
-
-                    b.Navigation("TransportLine");
-
-                    b.Navigation("TransportType");
                 });
 
             modelBuilder.Entity("E_TS.Data.Models.ECardTrips", b =>
                 {
-                    b.HasOne("E_TS.Data.Models.TransportLines", "TransportLine")
-                        .WithMany()
-                        .HasForeignKey("TransportNumber");
-
-                    b.HasOne("E_TS.Data.Models.TransportType", "TransportType")
-                        .WithMany()
-                        .HasForeignKey("TransportTypeId");
-
                     b.HasOne("E_TS.Data.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("ApplicationUser");
-
-                    b.Navigation("TransportLine");
-
-                    b.Navigation("TransportType");
                 });
 
             modelBuilder.Entity("E_TS.Data.Models.Reservation", b =>
@@ -488,17 +414,6 @@ namespace E_TS.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("ApplicationUser");
-                });
-
-            modelBuilder.Entity("E_TS.Data.Models.TransportLines", b =>
-                {
-                    b.HasOne("E_TS.Data.Models.TransportType", "TransportType")
-                        .WithMany()
-                        .HasForeignKey("TransportTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TransportType");
                 });
 
             modelBuilder.Entity("E_TS.Models.Ticket", b =>

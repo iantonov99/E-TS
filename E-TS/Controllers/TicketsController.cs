@@ -1,6 +1,9 @@
 ﻿using E_TS.Contracts;
+using E_TS.Data.Models;
 using E_TS.ViewModels.Reservation;
+using E_TS.ViewModels.Ticket;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,23 +14,50 @@ namespace E_TS.Controllers
 {
     public class TicketsController : Controller
     {
-        private readonly ITicketsService ticketService; 
+        private readonly ITicketsService ticketService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public TicketsController(ITicketsService ticketService)
+        public TicketsController(ITicketsService ticketService, UserManager<ApplicationUser> userManager)
         {
             this.ticketService = ticketService;
+            this.userManager = userManager;
         }
         // GET: TicketsController
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var allTickets = ticketService.GetTickets();
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+
+            var allTickets = ticketService.GetTickets(user.Id);
             return View(allTickets);
         }
 
         [IgnoreAntiforgeryToken]
-        public ActionResult SaveTicket([FromBody] TicketViewModel model)
+        public async Task<ActionResult> DeleteTicket([FromBody] TicketIdViewModel model)
         {
-            return RedirectToAction("Index");
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+
+            int modelId = model.Id;
+           
+            ticketService.DeleteTicket(modelId);
+
+            var allTickets = ticketService.GetTickets(user.Id);
+
+            return RedirectToAction("Index", allTickets);
+        }
+
+            [IgnoreAntiforgeryToken]
+        public async Task<ActionResult> SaveTicket([FromBody] TicketViewModel model)
+        {
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+
+            bool isBought = model.IsBought;
+            decimal ticketPrice = decimal.Parse(model.TicketPrice);
+            string ticketName = model.TicketName;
+
+            ticketService.createUserTickets(isBought, ticketPrice, ticketName, user.Id);
+
+            var allTickets = ticketService.GetTickets(user.Id);
+            return RedirectToAction("Index", allTickets);
         }
 
         // GET: TicketsController/Details/5
