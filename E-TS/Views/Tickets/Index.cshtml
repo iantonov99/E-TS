@@ -379,10 +379,10 @@
 
             var o = new Object();
             o.IsBought = false;
-            o.TicketPrice = value; Tickets
+            o.TicketPrice = value;
             o.TicketName = ticketNm;
 
-            request.open('POST', '//SaveTicket', true);
+            request.open('POST', '/Tickets/SaveTicket', true);
             request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
             request.setRequestHeader('Content-Length', JSON.stringify(o).length);
             request.onreadystatechange = function () {
@@ -505,16 +505,16 @@
             Седмичен Билет
             <button href="#" class="btn btn--activate" onclick="weekTickedClicked('btnActivation')" id="btnActivation">
                 <span class="btn__icon"></span>
-                <span class="btn__text" data-wait="Waiting" data-after="Активиран">Запази</span>
+                <span class="btn__text" data-wait="Изчакване" data-after="Активиран">Запази</span>
             </button>
         </div>
 
         <div id="weekendTicket">
             <span id="weekendTicketPrice">7,50</span>
             Уикенд Билет
-            <button href="#" class="btn btn--activateWE" onclick="weekendTickedClicked()" id="btnActivationWeekend">
+            <button href="#" class="btn btn--activate" onclick="weekendTickedClicked()" id="btnActivationWeekend">
                 <span class="btn__icon"></span>
-                <span class="btn__text" data-wait="Waiting" data-after="Активиран">Запази</span>
+                <span class="btn__text" data-wait="Изчакване" data-after="Активиран">Запази</span>
             </button>
         </div>
 
@@ -523,7 +523,7 @@
             Дневен Билет
             <button href="#" class="btn btn--activate" onclick="DailyTickedClicked()" id="btnActivationDaily">
                 <span class="btn__icon"></span>
-                <span class="btn__text" data-wait="Waiting" data-after="Активиран">Запази</span>
+                <span class="btn__text" data-wait="Изчакване" data-after="Активиран">Запази</span>
             </button>
         </div>
 
@@ -532,7 +532,7 @@
             Часов Билет
             <button href="#" class="btn btn--activate" onclick="HourTickedClicked()" id="btnActivationHour">
                 <span class="btn__icon"></span>
-                <span class="btn__text" data-wait="Waiting" data-after="Activated">Запази</span>
+                <span class="btn__text" data-wait="Изчакване" data-after="Активиран">Запази</span>
             </button>
         </div>
     </div>
