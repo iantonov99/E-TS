@@ -18,6 +18,10 @@ namespace E_TS.Constants
 
         public static string[] Transports = { "Всички", "Трамвай", "Тролей", "Автобус", "Метро" };
 
+        public const int TicketTable = 1;
+        public const int ECardTable = 2;
+        public const int ECardTripsTable = 3;
+        public const int ReservationTable = 4;
 
     }
 }
