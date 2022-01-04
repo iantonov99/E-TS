@@ -1,50 +1,64 @@
 ﻿@{
     ViewData["Title"] = "Количка";
-    string[] TableHeaders = new string[] { "Продукт", "Цена", "Действия" };
+    string[] TableHeaders = new string[] { "Продукт", "Информация", "Цена", "Действия" };
+    var sum = 0.0;
+    foreach (var item in Model)
+    {
+        sum += item.Price;
+    }
 }
 
+<div class="card">
+    <div class="card-body">
 
-<div class="table">
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                @foreach (var header in TableHeaders)
-                {
-                    <th>
-                        @header
-                    </th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null)
-            {
-                foreach (var r in Model)
-                {
+        <div class="table">
+            <table class="table table-bordered table-hover">
+                <thead>
                     <tr>
-                        <td>Продукт</td> @*TODO change with new view model*@
-                        <td>@r.Price</td>
-                        <td>
-                            <a href="@Url.Action("Delete", "Cart")/@r.Id" class="btn btn-warning">X</a>
-                        </td>
+                        @foreach (var header in TableHeaders)
+                        {
+                            <th>
+                                @header
+                            </th>
+                        }
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var r in Model)
+                        {
+                            <tr>
+                                <td>@r.Product</td>
+                                <td>@r.Detail</td>
+                                <td>@r.Price</td>
+                                <td>
+                                    <a href="@Url.Action("Remove", "Cart")?Id=@r.Id&Table=@r.Table" class="btn btn-danger"><i class="fas fa-times"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 
 <div class="row">
-</div>
-<div class="col-md-12 text-right pb-15">
-    <label>
-        Общо: @*TODO calculate sum*@
-    </label>
-</div>
-<div class="col-md-12 text-right pb-15">
-    <a asp-action="Add" class="btn btn-success">
-        <i class="fa fa-plus"></i>
-        Закупи
-    </a>
+    <div class="card col-md-12">
+        <div class="card-body">
+            <div class="col-md-12 text-right pb-15">
+                <label>
+                    <b>Общо: @sum</b>
+                </label>
+            </div>
+            <div class="col-md-12 text-right pb-15">
+                <a href="@Url.Action("Buy", "Cart")" class="btn btn-success">
+                    <i class="fa fa-plus"></i>
+                    Закупи
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

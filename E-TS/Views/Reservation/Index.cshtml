@@ -3,44 +3,50 @@
     string[] TableHeaders = new string[] { "Превозно средство", "Дата и час", "Адрес", "Цена", "Активна", "Действия" };
 }
 
-<div class="row">
-    <div class="col-md-12 text-right pb-15">
-        <a asp-action="Add" class="btn btn-success">
-            <i class="fa fa-plus"></i>
-            Направи резервация
-        </a>
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12 text-right pb-15">
+                <a asp-action="Add" class="btn btn-success">
+                    <i class="fa fa-plus"></i>
+                    Направи резервация
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        @foreach (var header in TableHeaders)
+                        {
+                            <th>
+                                @header
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var r in Model)
+                        {
+                            <tr>
+                                <td>@r.IsSpark</td>
+                                <td>@r.DateAndTime</td>
+                                <td>@r.Address</td>
+                                <td>@r.Price</td>
+                                <td>@r.IsActive</td>
+                                <td>
+                                    <a href="@Url.Action("Copy", "Reservation")/@r.Id" class="btn btn-warning">Резервирай отново</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
-<div class="table">
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                @foreach (var header in TableHeaders)
-                {
-                    <th>
-                        @header
-                    </th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null)
-            {
-                foreach (var r in Model)
-                {
-                    <tr>
-                        <td>@r.IsSpark</td>
-                        <td>@r.DateAndTime</td>
-                        <td>@r.Address</td>
-                        <td>@r.Price</td>
-                        <td>@r.IsActive</td>
-                        <td>
-                            <a href="@Url.Action("Copy", "Reservation")/@r.Id" class="btn btn-warning">Резервирай отново</a>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
-</div>

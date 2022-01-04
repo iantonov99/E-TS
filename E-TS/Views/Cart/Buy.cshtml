@@ -1,0 +1,39 @@
+﻿@model E_TS.ViewModels.Cart.PaymentViewModel
+@{
+    ViewData["Title"] = "Плащане";
+}
+
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Информация за плащане</h3>
+    </div>
+    <form asp-action="Buy" method="post" role="form">
+        <div class="card-body col-md-6">
+            <div class="form-group">
+                @Html.EditorFor(p => p.CardNumber)
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(p => p.Name)
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(p => p.CVV)
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(p => p.ValidTo, "DateTime")
+            </div>
+        </div>
+        <div class="card-footer">
+            <a href="@Url.Action("Index", "Card")" class="btn btn-danger">Назад</a>
+            <button type="submit" class="btn btn-success">Плати</button>
+        </div>
+    </form>
+</div>
+
+@section scripts {
+    <script>
+        (function () {
+            $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' }, autoclose: true });
+        })();
+    </script>
+}

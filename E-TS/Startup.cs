@@ -33,6 +33,7 @@ namespace E_TS
             services.AddScoped<ITicketsService, TicketsService>();
             services.AddScoped<IECardService, ECardService>();
             services.AddScoped<IDropDownService, DropDownService>();
+            services.AddScoped<ICartService, CartService>();
             services.AddApplicationServices();
             services.AddControllersWithViews();
         }

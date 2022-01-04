@@ -27,6 +27,8 @@ namespace E_TS.Data.Models
 
         public bool IsDeclined { get; set; }
 
+        public double Price { get; set; }
+
         [ForeignKey("ApplicationUser")]
         public virtual string UserId { get; set; }
 
