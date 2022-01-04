@@ -8,9 +8,7 @@
     <div class="card-header">
         <h3 class="card-title">Информация за плащане</h3>
     </div>
-    <form asp-action="Buy" method="post" role="form">
-        @Html.HiddenFor(p => p.IdOfProduct)
-        @Html.HiddenFor(p => p.Table)
+    <form asp-action="BuyAll" method="post" role="form">
         <div class="card-body col-md-6">
             <div class="form-group">
                 @Html.EditorFor(p => p.CardNumber)

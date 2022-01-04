@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using E_TS.Extensions;
 using Microsoft.AspNetCore.Identity;
 using E_TS.Data.Models;
+using System.Threading.Tasks;
 
 namespace E_TS.Controllers
 {
@@ -18,18 +19,18 @@ namespace E_TS.Controllers
             this.userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            //var user = await userManager.FindByNameAsync(User.Identity.Name);
-            var reservations = reservationService.GetReservations("");
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+            var reservations = reservationService.GetReservations(user.Id);
 
             return View(reservations);
         }
 
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            //var user = await userManager.FindByNameAsync(User.Identity.Name);
-            var reservation = new ReservationViewModel { UserId = "" };
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+            var reservation = new ReservationViewModel { UserId = user.Id };
 
             return View(reservation);
         }

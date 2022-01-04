@@ -37,6 +37,7 @@ namespace E_TS.Services
         public List<ReservationsTableViewModel> GetReservations(string UserId)
         {
             var result = _repo.All<Reservation>()
+                .Where(r => r.UserId.Equals(UserId) && r.IsBought == true)
                 .Select(r => new ReservationsTableViewModel()
                 { 
                     Id = r.Id,
@@ -98,7 +99,8 @@ namespace E_TS.Services
                         Latitude = model.Latitude,
                         Longitude = model.Longitude,
                         Price = model.Price,
-                        IsBought = false
+                        IsBought = false,
+                        UserId = model.UserId
                     };
                     _repo.Add(entity);
                 }

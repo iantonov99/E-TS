@@ -46,11 +46,11 @@ namespace E_TS.Controllers
 
         public async Task<IActionResult> Recharge(int Id)
         {
-            //var user = await userManager.FindByNameAsync(User.Identity.Name);
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
             var model = new ECardViewModel
             {
                 Id = Id,
-                UserId = "",
+                UserId = user.Id,
                 TransportTypes = dropDownService.GetTransportTypes(),
                 TransportLines = dropDownService.GetTransportLines()
             };
@@ -75,10 +75,10 @@ namespace E_TS.Controllers
 
         public async Task<IActionResult> CreateTrips()
         {
-            //var user = await userManager.FindByNameAsync(User.Identity.Name);
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
             var model = new ECardTripsViewModel
             {
-                UserId = "",
+                UserId = user.Id,
                 TransportTypes = dropDownService.GetTransportTypes(),
                 TransportLines = dropDownService.GetTransportLines()
             };

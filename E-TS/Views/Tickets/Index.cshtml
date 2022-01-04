@@ -56,11 +56,10 @@
     #dailyTicket {
         height: 80px;
         text-align: center;
-        background-image: url('images/purple.jpg');
+        background-image: url('images/red.jpg');
     }
 
-    #tableDiv
-    {
+    #tableDiv {
         overflow: scroll;
     }
 
@@ -76,7 +75,7 @@
         background-image: url('images/green.jpg');
     }
 
-    .btn {
+    .btnT {
         top: 10px;
         position: relative;
         float: right;
@@ -98,7 +97,7 @@
         overflow: hidden;
     }
 
-    .btn__icon {
+    .btnT__icon {
         width: 24px;
         height: 24px;
         background-color: #fff;
@@ -110,7 +109,7 @@
         left: 20px;
     }
 
-    .btn .btn__icon:before {
+    .btnT .btnT__icon:before {
         content: '';
         left: 0px;
         top: 0px;
@@ -121,7 +120,7 @@
         -moz-transition: all 0.3s ease;
     }
 
-    .btn--activate .btn__icon:before {
+    .btnT--activate .btnT__icon:before {
         width: 24px;
         height: 24px;
         background-image: url('data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI2OC44MzEgMjY4LjgzMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjY4LjgzMSAyNjguODMyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTIyMy4yNTUsODMuNjU5bC04MC03OS45OThjLTQuODgxLTQuODgxLTEyLjc5Ny00Ljg4MS0xNy42NzgsMGwtODAsODBjLTQuODgzLDQuODgyLTQuODgzLDEyLjc5NiwwLDE3LjY3OCAgIGMyLjQzOSwyLjQ0LDUuNjQsMy42NjEsOC44MzksMy42NjFzNi4zOTctMS4yMjEsOC44MzktMy42NjFsNTguNjYxLTU4LjY2MXYyMTMuNjU0YzAsNi45MDMsNS41OTcsMTIuNSwxMi41LDEyLjUgICBjNi45MDEsMCwxMi41LTUuNTk3LDEyLjUtMTIuNVY0Mi42NzdsNTguNjYxLDU4LjY1OWM0Ljg4Myw0Ljg4MSwxMi43OTcsNC44ODEsMTcuNjc4LDAgICBDMjI4LjEzNyw5Ni40NTUsMjI4LjEzNyw4OC41NDEsMjIzLjI1NSw4My42NTl6IiBmaWxsPSIjMzE5YmVmIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==');
@@ -131,7 +130,7 @@
         background-position-y: center;
     }
 
-    .btn .btn__icon:after {
+    .btnT .btnT__icon:after {
         content: '';
         top: 0px;
         left: 0px;
@@ -142,7 +141,7 @@
         -moz-transition: all 0.3s linear;
     }
 
-    .btn--activate .btn__icon:after {
+    .btnT--activate .btnT__icon:after {
         width: 24px;
         height: 24px;
         background-image: url('data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDI2IDI2IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNiAyNiIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+CiAgPHBhdGggZD0ibS4zLDE0Yy0wLjItMC4yLTAuMy0wLjUtMC4zLTAuN3MwLjEtMC41IDAuMy0wLjdsMS40LTEuNGMwLjQtMC40IDEtMC40IDEuNCwwbC4xLC4xIDUuNSw1LjljMC4yLDAuMiAwLjUsMC4yIDAuNywwbDEzLjQtMTMuOWgwLjF2LTguODgxNzhlLTE2YzAuNC0wLjQgMS0wLjQgMS40LDBsMS40LDEuNGMwLjQsMC40IDAuNCwxIDAsMS40bDAsMC0xNiwxNi42Yy0wLjIsMC4yLTAuNCwwLjMtMC43LDAuMy0wLjMsMC0wLjUtMC4xLTAuNy0wLjNsLTcuOC04LjQtLjItLjN6IiBmaWxsPSIjMmY4OWQxIi8+Cjwvc3ZnPgo=');
@@ -152,31 +151,31 @@
         background-position-y: 34px;
     }
 
-    .btn--activate:hover {
+    .btnT--activate:hover {
         background-color: #2f89d1;
     }
 
-        .btn--activate:hover .btn__icon {
+        .btnT--activate:hover .btnT__icon {
             border-color: #2f89d1;
         }
 
-            .btn--activate:hover .btn__icon:before {
+            .btnT--activate:hover .btnT__icon:before {
                 background-position-y: -34px;
             }
 
-            .btn--activate:hover .btn__icon:after {
+            .btnT--activate:hover .btnT__icon:after {
                 background-position-y: center;
             }
 
-    .btn--waiting {
+    .btnT--waiting {
         background-color: #2f89d1;
     }
 
-        .btn--waiting .btn__icon {
+        .btnT--waiting .btnT__icon {
             background-color: transparent;
         }
 
-            .btn--waiting .btn__icon:after {
+            .btnT--waiting .btnT__icon:after {
                 width: 20px;
                 height: 20px;
                 top: 0px;
@@ -191,11 +190,11 @@
                 z-index: 0;
             }
 
-    .btn--activated {
+    .btnT--activated {
         background-color: #f3f633;
     }
 
-        .btn--activated .btn__icon:after {
+        .btnT--activated .btnT__icon:after {
             background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDI2IDI2IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNiAyNiIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+CiAgPHBhdGggZD0ibS4zLDE0Yy0wLjItMC4yLTAuMy0wLjUtMC4zLTAuN3MwLjEtMC41IDAuMy0wLjdsMS40LTEuNGMwLjQtMC40IDEtMC40IDEuNCwwbC4xLC4xIDUuNSw1LjljMC4yLDAuMiAwLjUsMC4yIDAuNywwbDEzLjQtMTMuOWgwLjF2LTguODgxNzhlLTE2YzAuNC0wLjQgMS0wLjQgMS40LDBsMS40LDEuNGMwLjQsMC40IDAuNCwxIDAsMS40bDAsMC0xNiwxNi42Yy0wLjIsMC4yLTAuNCwwLjMtMC43LDAuMy0wLjMsMC0wLjUtMC4xLTAuNy0wLjNsLTcuOC04LjQtLjItLjN6IiBmaWxsPSIjNDRjYzcxIi8+Cjwvc3ZnPgo=);
             width: 24px;
             height: 24px;
@@ -206,11 +205,11 @@
             animation: activated 0.3s linear 1;
         }
 
-    .btn__text {
+    .btnT__text {
         position: relative;
     }
 
-        .btn__text:before {
+        .btnT__text:before {
             content: attr(data-after);
             position: absolute;
             top: -27px;
@@ -223,7 +222,7 @@
             -moz-transition: all 0.2s linear;
         }
 
-        .btn__text:after {
+        .btnT__text:after {
             content: attr(data-wait);
             position: absolute;
             color: transparent;
@@ -237,21 +236,21 @@
             -moz-transition: all 0.2s linear;
         }
 
-    .btn--waiting .btn__text {
+    .btnT--waiting .btnT__text {
         color: transparent;
     }
 
-        .btn--waiting .btn__text:after {
+        .btnT--waiting .btnT__text:after {
             top: -13px;
             z-index: 1;
         }
 
-    .btn--activated .btn__text:before {
+    .btnT--activated .btnT__text:before {
         top: -13px;
         z-index: 1;
     }
 
-    .btn--activated .btn__text {
+    .btnT--activated .btnT__text {
         color: transparent;
     }
 
@@ -301,25 +300,25 @@
     }
 
     function weekTickedClicked(ticket) {
-        let buttonS = document.getElementById('btnActivation');
+        let buttonS = document.getElementById('btnTActivation');
 
-        if (!document.querySelector("#btnActivation").classList.contains("btn--activated")) {
-            document.querySelector("#btnActivation").classList.remove('btn--activate');
-            document.querySelector("#btnActivation").classList.add('btn--waiting');
+        if (!document.querySelector("#btnTActivation").classList.contains("btnT--activated")) {
+            document.querySelector("#btnTActivation").classList.remove('btnT--activate');
+            document.querySelector("#btnTActivation").classList.add('btnT--waiting');
 
             setTimeout(removeWaiting, 3000, ticket);
         }
         else {
-            document.querySelector("#btnActivation").classList.remove('btn--activated');
-            document.querySelector("#btnActivation").classList.add('btn--waiting');
+            document.querySelector("#btnTActivation").classList.remove('btnT--activated');
+            document.querySelector("#btnTActivation").classList.add('btnT--waiting');
 
             setTimeout(returnActivated, 3000);
         }
 
         function removeWaiting(ticket) {
             console.log(ticket);
-            document.querySelector("#btnActivation").classList.remove('btn--waiting');
-            document.querySelector("#btnActivation").classList.add('btn--activated');
+            document.querySelector("#btnTActivation").classList.remove('btnT--waiting');
+            document.querySelector("#btnTActivation").classList.add('btnT--activated');
 
             var request = new XMLHttpRequest();
 
@@ -345,37 +344,37 @@
         }
 
         function returnActivated() {
-            document.querySelector("#btnActivation").classList.remove('btn--waiting');
-            document.querySelector("#btnActivation").classList.add('btn--activate');
+            document.querySelector("#btnTActivation").classList.remove('btnT--waiting');
+            document.querySelector("#btnTActivation").classList.add('btnT--activate');
         }
     }
 
     function weekendTickedClicked() {
-        let buttonS = document.getElementById('btnActivationWeekend');
+        let buttonS = document.getElementById('btnTActivationWeekend');
 
-        if (!document.querySelector("#btnActivationWeekend").classList.contains("btn--activated")) {
-            document.querySelector("#btnActivationWeekend").classList.remove('btn--activate');
-            document.querySelector("#btnActivationWeekend").classList.add('btn--waiting');
+        if (!document.querySelector("#btnTActivationWeekend").classList.contains("btnT--activated")) {
+            document.querySelector("#btnTActivationWeekend").classList.remove('btnT--activate');
+            document.querySelector("#btnTActivationWeekend").classList.add('btnT--waiting');
 
             setTimeout(removeWaiting, 3000);
         }
         else {
-            document.querySelector("#btnActivationWeekend").classList.remove('btn--activated');
-            document.querySelector("#btnActivationWeekend").classList.add('btn--waiting');
+            document.querySelector("#btnTActivationWeekend").classList.remove('btnT--activated');
+            document.querySelector("#btnTActivationWeekend").classList.add('btnT--waiting');
 
             setTimeout(returnActivated, 3000);
         }
 
         function removeWaiting() {
-            document.querySelector("#btnActivationWeekend").classList.remove('btn--waiting');
-            document.querySelector("#btnActivationWeekend").classList.add('btn--activated');
+            document.querySelector("#btnTActivationWeekend").classList.remove('btnT--waiting');
+            document.querySelector("#btnTActivationWeekend").classList.add('btnT--activated');
 
             var request = new XMLHttpRequest();
 
             //FOR NOW IT IS HARDCODED -- TODO -- FIX IT!
 
             var value = '7,50';
-            var ticketNm = "WeekendTicket";
+            var ticketNm = "ThreeDaysTicket";
 
             var o = new Object();
             o.IsBought = false;
@@ -394,30 +393,30 @@
         }
 
         function returnActivated() {
-            document.querySelector("#btnActivationWeekend").classList.remove('btn--waiting');
-            document.querySelector("#btnActivationWeekend").classList.add('btn--activate');
+            document.querySelector("#btnTActivationWeekend").classList.remove('btnT--waiting');
+            document.querySelector("#btnTActivationWeekend").classList.add('btnT--activate');
         }
     }
 
     function DailyTickedClicked() {
-        let buttonS = document.getElementById('btnActivationDaily');
+        let buttonS = document.getElementById('btnTActivationDaily');
 
-        if (!document.querySelector("#btnActivationDaily").classList.contains("btn--activated")) {
-            document.querySelector("#btnActivationDaily").classList.remove('btn--activate');
-            document.querySelector("#btnActivationDaily").classList.add('btn--waiting');
+        if (!document.querySelector("#btnTActivationDaily").classList.contains("btnT--activated")) {
+            document.querySelector("#btnTActivationDaily").classList.remove('btnT--activate');
+            document.querySelector("#btnTActivationDaily").classList.add('btnT--waiting');
 
             setTimeout(removeWaiting, 3000);
         }
         else {
-            document.querySelector("#btnActivationDaily").classList.remove('btn--activated');
-            document.querySelector("#btnActivationDaily").classList.add('btn--waiting');
+            document.querySelector("#btnTActivationDaily").classList.remove('btnT--activated');
+            document.querySelector("#btnTActivationDaily").classList.add('btnT--waiting');
 
             setTimeout(returnActivated, 3000);
         }
 
         function removeWaiting() {
-            document.querySelector("#btnActivationDaily").classList.remove('btn--waiting');
-            document.querySelector("#btnActivationDaily").classList.add('btn--activated');
+            document.querySelector("#btnTActivationDaily").classList.remove('btnT--waiting');
+            document.querySelector("#btnTActivationDaily").classList.add('btnT--activated');
 
             var request = new XMLHttpRequest();
 
@@ -443,30 +442,30 @@
         }
 
         function returnActivated() {
-            document.querySelector("#btnActivationDaily").classList.remove('btn--waiting');
-            document.querySelector("#btnActivationDaily").classList.add('btn--activate');
+            document.querySelector("#btnTActivationDaily").classList.remove('btnT--waiting');
+            document.querySelector("#btnTActivationDaily").classList.add('btnT--activate');
         }
     }
 
     function HourTickedClicked() {
-        let buttonS = document.getElementById('btnActivationHour');
+        let buttonS = document.getElementById('btnTActivationHour');
 
-        if (!document.querySelector("#btnActivationHour").classList.contains("btn--activated")) {
-            document.querySelector("#btnActivationHour").classList.remove('btn--activate');
-            document.querySelector("#btnActivationHour").classList.add('btn--waiting');
+        if (!document.querySelector("#btnTActivationHour").classList.contains("btnT--activated")) {
+            document.querySelector("#btnTActivationHour").classList.remove('btnT--activate');
+            document.querySelector("#btnTActivationHour").classList.add('btnT--waiting');
 
             setTimeout(removeWaiting, 3000);
         }
         else {
-            document.querySelector("#btnActivationHour").classList.remove('btn--activated');
-            document.querySelector("#btnActivationHour").classList.add('btn--waiting');
+            document.querySelector("#btnTActivationHour").classList.remove('btnT--activated');
+            document.querySelector("#btnTActivationHour").classList.add('btnT--waiting');
 
             setTimeout(returnActivated, 3000);
         }
 
         function removeWaiting() {
-            document.querySelector("#btnActivationHour").classList.remove('btn--waiting');
-            document.querySelector("#btnActivationHour").classList.add('btn--activated');
+            document.querySelector("#btnTActivationHour").classList.remove('btnT--waiting');
+            document.querySelector("#btnTActivationHour").classList.add('btnT--activated');
 
             var request = new XMLHttpRequest();
 
@@ -492,102 +491,114 @@
         }
 
         function returnActivated() {
-            document.querySelector("#btnActivationHour").classList.remove('btn--waiting');
-            document.querySelector("#btnActivationHour").classList.add('btn--activate');
+            document.querySelector("#btnTActivationHour").classList.remove('btnT--waiting');
+            document.querySelector("#btnTActivationHour").classList.add('btnT--activate');
         }
     }
 </script>
 
 <body>
-    <div id="ticketContainer">
-        <div id="weekTicket">
-            <span id="weekTicketPrice">10,20</span>
-            Седмичен Билет
-            <button href="#" class="btn btn--activate" onclick="weekTickedClicked('btnActivation')" id="btnActivation">
-                <span class="btn__icon"></span>
-                <span class="btn__text" data-wait="Waiting" data-after="Активиран">Запази</span>
-            </button>
-        </div>
+    <div class="card">
+        <div class="card-body">
+            <div id="ticketContainer">
+                <div id="weekTicket">
+                    <span style="background-color: aliceblue; border-radius: 5px; padding: 10px;">
+                        <span id="weekTicketPrice"><label style="font-size:x-large">10,20</label></span>
+                        <label style="font-size:x-large">Седмичен Билет</label>
+                    </span>
+                    <button href="#" class="btnT btnT--activate" onclick="weekTickedClicked('btnTActivation')" id="btnTActivation">
+                        <span class="btnT__icon"></span>
+                        <span class="btnT__text" data-wait="Waiting" data-after="Активиран">Запази</span>
+                    </button>
+                </div>
 
-        <div id="weekendTicket">
-            <span id="weekendTicketPrice">7,50</span>
-            Уикенд Билет
-            <button href="#" class="btn btn--activateWE" onclick="weekendTickedClicked()" id="btnActivationWeekend">
-                <span class="btn__icon"></span>
-                <span class="btn__text" data-wait="Waiting" data-after="Активиран">Запази</span>
-            </button>
-        </div>
+                <div id="weekendTicket">
+                    <span style="background-color: aliceblue; border-radius: 5px; padding: 10px;">
+                        <span id="weekendTicketPrice"><label style="font-size:x-large">7,50</label></span>
+                        <label style="font-size:x-large">Тридневен Билет</label>
+                    </span>
+                    <button href="#" class="btnT btnT--activateWE" onclick="weekendTickedClicked()" id="btnTActivationWeekend">
+                        <span class="btnT__icon"></span>
+                        <span class="btnT__text" data-wait="Waiting" data-after="Активиран">Запази</span>
+                    </button>
+                </div>
 
-        <div id="dailyTicket">
-            <span id="dailyTicketPrice">4,00</span>
-            Дневен Билет
-            <button href="#" class="btn btn--activate" onclick="DailyTickedClicked()" id="btnActivationDaily">
-                <span class="btn__icon"></span>
-                <span class="btn__text" data-wait="Waiting" data-after="Активиран">Запази</span>
-            </button>
-        </div>
+                <div id="dailyTicket">
+                    <span style="background-color: aliceblue; border-radius: 5px; padding: 10px;">
+                        <span id="dailyTicketPrice"><label style="font-size:x-large">4,00</label></span>
+                        <label style="font-size:x-large">Дневен Билет</label>
+                    </span>
+                    <button href="#" class="btnT btnT--activate" onclick="DailyTickedClicked()" id="btnTActivationDaily">
+                        <span class="btnT__icon"></span>
+                        <span class="btnT__text" data-wait="Waiting" data-after="Активиран">Запази</span>
+                    </button>
+                </div>
 
-        <div id="hourTicket">
-            <span id="hourTicketPrice">1,60</span>
-            Часов Билет
-            <button href="#" class="btn btn--activate" onclick="HourTickedClicked()" id="btnActivationHour">
-                <span class="btn__icon"></span>
-                <span class="btn__text" data-wait="Waiting" data-after="Activated">Запази</span>
-            </button>
-        </div>
-    </div>
+                <div id="hourTicket">
+                    <span style="background-color: aliceblue; border-radius: 5px; padding: 10px;">
+                        <span id="hourTicketPrice"><label style="font-size:x-large">1,60</label></span>
+                        <label style="font-size:x-large">Часов Билет</label>
+                    </span>
+                    <button href="#" class="btnT btnT--activate" onclick="HourTickedClicked()" id="btnTActivationHour">
+                        <span class="btnT__icon"></span>
+                        <span class="btnT__text" data-wait="Waiting" data-after="Activated">Запази</span>
+                    </button>
+                </div>
+            </div>
 
-    <div class="table" id="tableDiv">
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    @foreach (var header in TableHeaders)
-                    {
-                        <th>
-                            @header
-                        </th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model != null)
-                {
-                    @foreach (var r in Model)
-                    {
-                <tr class="@(r.IsBought == true ? "bought" : "s") @(r.IsExpired == true ? "expired" : "r")">
-                    @if (r.TicketName == "WeekTicket")
-                    {
-                        <td>Седмичен Билет</td>
-                    }
-                    else if (r.TicketName == "WeekendTicket")
-                    {
-                        <td>Уикенд Билет</td>
-                    }
-                    else if (r.TicketName == "DailyTicket")
-                    {
-                        <td>Дневен Билет</td>
-                    }
-                    else
-                    {
-                        <td>Едночасов Билет</td>
-                    }
-                    <td>@r.TicketPrice</td>
-                    @if (!r.IsBought)
-                    {
-                        <td>Заявен</td>
-                    }
-                    else
-                    {
-                        <td>Активен</td>
-                    }
-                    <td>@r.StartDate</td>
-                    <td>@r.EndDate</td>
-                    <td><button id="@r.Id" onclick="deleteTicketClicked(@r.Id)">Премахни</button></td>
-                </tr>
-                    }
-                }
-            </tbody>
-        </table>
+            <div class="table" id="tableDiv">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            @foreach (var header in TableHeaders)
+                            {
+                                <th>
+                                    @header
+                                </th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            @foreach (var r in Model)
+                            {
+                                <tr class="@(r.IsBought == true ? "bought" : "s") @(r.IsExpired == true ? "expired" : "r")">
+                                    @if (r.TicketName == "WeekTicket")
+                                    {
+                                        <td>Седмичен Билет</td>
+                                    }
+                                    else if (r.TicketName == "ThreeDaysTicket")
+                                    {
+                                        <td>Тридневен Билет</td>
+                                    }
+                                    else if (r.TicketName == "DailyTicket")
+                                    {
+                                        <td>Дневен Билет</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Едночасов Билет</td>
+                                    }
+                                    <td>@r.TicketPrice</td>
+                                    @if (!r.IsBought)
+                                    {
+                                        <td>Заявен</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Активен</td>
+                                    }
+                                    <td>@r.StartDate</td>
+                                    <td>@r.EndDate</td>
+                                    <td><button id="@r.Id" onclick="deleteTicketClicked(@r.Id)">Премахни</button></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using E_TS.Extensions;
 using E_TS.ViewModels.Cart;
+using System.Threading.Tasks;
 
 namespace E_TS.Controllers
 {
@@ -17,10 +18,10 @@ namespace E_TS.Controllers
             this.cartService = cartService;
             this.userManager = userManager;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            //var user = await userManager.FindByNameAsync(User.Identity.Name);
-            var cartItems = cartService.GetCartViewModels("");
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+            var cartItems = cartService.GetCartViewModels(user.Id);
 
             return View(cartItems);
         }
@@ -34,21 +35,50 @@ namespace E_TS.Controllers
             return RedirectToAction("Index", "Cart");
         }
 
-        public IActionResult Buy()
+        public IActionResult BuyAll()
         {
-            //var user = await userManager.FindByNameAsync(User.Identity.Name);
             var model = new PaymentViewModel();
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Buy(PaymentViewModel model)
+        public async Task<IActionResult> BuyAll(PaymentViewModel model)
         {
             if(!ModelState.IsValid)
             {
                 return View(model);
             }
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+
+            bool result = cartService.BuyAll(user.Id);
+            this.ShowNotificationOnUI(result);
+
+            return RedirectToAction("Index", "Cart");
+        }
+
+        public IActionResult Buy(int Id, int Table)
+        {
+            var model = new PaymentViewModel()
+            {
+                IdOfProduct = Id,
+                Table = Table
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Buy(PaymentViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await userManager.FindByNameAsync(User.Identity.Name);
+
+            bool result = cartService.Buy(model.IdOfProduct, model.Table, user.Id);
+            this.ShowNotificationOnUI(result);
 
             return RedirectToAction("Index", "Cart");
         }

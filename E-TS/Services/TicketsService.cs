@@ -100,13 +100,13 @@ namespace E_TS.Services
             {
                 resultDateTime = startDateTime.AddDays(7);
             }
-            else if(ticketName == "WeekendTicket")
+            else if(ticketName == "ThreeDaysTicket")
             {
-                resultDateTime = startDateTime.AddDays(2);
+                resultDateTime = startDateTime.AddDays(3);
             }
             else if(ticketName == "DailyTicket")
             {
-                resultDateTime = startDateTime.AddDays(2);
+                resultDateTime = startDateTime.AddDays(1);
             }
             else
             {
@@ -130,7 +130,8 @@ namespace E_TS.Services
                     StartDate = startDate.ToString("yyyy-MM-dd HH:mm:ss"),
                     EndDate = GetEndDate(startDate, ticketName),
                     TicketDetail = ticketDetail,
-                    UserId = userId
+                    UserId = userId,
+                    IsDeclined = false
                 };
 
                 _repo.Add(newTicket);

@@ -45,7 +45,7 @@ namespace E_TS.Controllers
             return RedirectToAction("Index", allTickets);
         }
 
-            [IgnoreAntiforgeryToken]
+        [IgnoreAntiforgeryToken]
         public async Task<ActionResult> SaveTicket([FromBody] TicketViewModel model)
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);

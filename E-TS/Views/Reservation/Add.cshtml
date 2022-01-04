@@ -4,52 +4,55 @@
     ViewData["Title"] = "Добавяне на резервация";
 }
 
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Добавяне на резервация</h3>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Добавяне на резервация</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="Add" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @Html.HiddenFor(r => r.Id)
+                        @Html.HiddenFor(r => r.UserId)
+                        @Html.HiddenFor(x => x.Latitude, new { id = "lat" })
+                        @Html.HiddenFor(x => x.Longitude, new { id = "lon" })
+                        <div class="card-body">
+                            @foreach (var option in Model.Options)
+                            {
+                                @Html.RadioButtonFor(model => model.SparkOrScooter, option) @option <br />
+                            }
+                            <span asp-validation-for="@Model.SparkOrScooter" class="text-danger"></span>
+                            <div class="form-group">
+                                @Html.EditorFor(r => r.DateAndTime, "DateTime")
+                            </div>
+                            <div class="form-group">
+                                @Html.EditorFor(r => r.Address, "String")
+                            </div>
+                            <div class="form-group">
+                                @Html.EditorFor(r => r.Description, "String")
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.Price" class="control-label"></label>
+                                <input asp-for="@Model.Price" class="form-control" type="number" readonly>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <input type="submit" value="Добави към количката" class="btn btn-success" />
+                            <a asp-action="Index" asp-controller="Reservation" class="btn btn-danger">Назад</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <!-- /.card-header -->
-            <!-- form start -->
-            <form asp-action="Add" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                @Html.HiddenFor(r => r.Id)
-                @Html.HiddenFor(r => r.UserId)
-                @Html.HiddenFor(x => x.Latitude, new { id = "lat" })
-                @Html.HiddenFor(x => x.Longitude, new { id = "lon" })
-                <div class="card-body">
-                    @foreach (var option in Model.Options)
-                    {
-                        @Html.RadioButtonFor(model => model.SparkOrScooter, option) @option <br />
-                    }
-                    <span asp-validation-for="@Model.SparkOrScooter" class="text-danger"></span>
-                    <div class="form-group">
-                        @Html.EditorFor(r => r.DateAndTime, "DateTime")
-                    </div>
-                    <div class="form-group">
-                        @Html.EditorFor(r => r.Address, "String")
-                    </div>
-                    <div class="form-group">
-                        @Html.EditorFor(r => r.Description, "String")
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="@Model.Price" class="control-label"></label>
-                        <input asp-for="@Model.Price" class="form-control" type="number" readonly>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <input type="submit" value="Добави към количката" class="btn btn-success" />
-                    <a asp-action="Index" asp-controller="Reservation" class="btn btn-danger">Назад</a>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <span asp-validation-for="@Model.Latitude" class="text-danger"></span>
-        <div id="map">
+            <div class="col-md-6">
+                <span asp-validation-for="@Model.Latitude" class="text-danger"></span>
+                <div id="map">
 
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -86,48 +89,48 @@
 
 
             });
-                // Create the infobox for the pushpin
-                //var infobox = null;
+            // Create the infobox for the pushpin
+            //var infobox = null;
 
-                //declare addMarker function
-                //function addMarker(latitude, longitude, title, description, pid)
-                //{
-                //    var marker = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(latitude, longitude), { color: 'green' });
+            //declare addMarker function
+            //function addMarker(latitude, longitude, title, description, pid)
+            //{
+            //    var marker = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(latitude, longitude), { color: 'green' });
 
-                //    infobox = new Microsoft.Maps.Infobox(marker.getLocation(), {
-                //        visible : false
-                //    });
+            //    infobox = new Microsoft.Maps.Infobox(marker.getLocation(), {
+            //        visible : false
+            //    });
 
-                //    marker.metadata = {
-                //        id: pid,
-                //        title: title,
-                //        description: description
-                //    };
+            //    marker.metadata = {
+            //        id: pid,
+            //        title: title,
+            //        description: description
+            //    };
 
-                //    Microsoft.Maps.Events.addHandler(marker, 'mouseout', hideInfobox);
-                //    Microsoft.Maps.Events.addHandler(marker, 'mouseover', showInfobox);
+            //    Microsoft.Maps.Events.addHandler(marker, 'mouseout', hideInfobox);
+            //    Microsoft.Maps.Events.addHandler(marker, 'mouseover', showInfobox);
 
-                //    infobox.setMap(map);
-                //    map.entities.push(marker);
-                //    marker.setOptions({ enableHoverStyle: true });
-                //};
+            //    infobox.setMap(map);
+            //    map.entities.push(marker);
+            //    marker.setOptions({ enableHoverStyle: true });
+            //};
 
-                //function showInfobox(e) {
-                //    if (e.target.metadata) {
-                //        infobox.setOptions({
-                //            location: e.target.getLocation(),
-                //            title: e.target.metadata.title,
-                //            description: e.target.metadata.description,
-                //            visible: true
-                //        });
-                //    }
-                //}
+            //function showInfobox(e) {
+            //    if (e.target.metadata) {
+            //        infobox.setOptions({
+            //            location: e.target.getLocation(),
+            //            title: e.target.metadata.title,
+            //            description: e.target.metadata.description,
+            //            visible: true
+            //        });
+            //    }
+            //}
 
-                //function hideInfobox(e) {
-                //    infobox.setOptions({ visible: false });
-                //}
+            //function hideInfobox(e) {
+            //    infobox.setOptions({ visible: false });
+            //}
 
-            }
+        }
 
     </script>
     <script src='https://www.bing.com/api/maps/mapcontrol?callback=loadMap&key=AoA20tNDXEBV-TUd6Z4NW0Pd0VXQ-l3uu04Qf8jfKK3U5W-iwMSBRergVVcSmgZL'></script>
