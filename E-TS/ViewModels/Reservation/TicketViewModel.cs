@@ -8,10 +8,12 @@ namespace E_TS.ViewModels.Reservation
 {
     public class TicketViewModel
     {
+        public int Id { get; set; }
         public bool IsBought { get; set; }
-
         public string TicketPrice { get; set; }
-
         public string TicketName { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+        public bool IsExpired { get; set; }
     }
 }

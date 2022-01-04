@@ -1,4 +1,5 @@
 ﻿using E_TS.Data.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,5 +20,10 @@ namespace E_TS.Models
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public TicketDetails TicketDetail { get; set; }
+
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+
+        public bool IsExpired { get; set; }
     }
 }

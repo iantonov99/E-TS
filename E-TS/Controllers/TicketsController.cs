@@ -1,5 +1,6 @@
 ﻿using E_TS.Contracts;
 using E_TS.ViewModels.Reservation;
+using E_TS.ViewModels.Ticket;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -25,9 +26,28 @@ namespace E_TS.Controllers
         }
 
         [IgnoreAntiforgeryToken]
+        public ActionResult DeleteTicket([FromBody] TicketIdViewModel model)
+        {
+            int modelId = model.Id;
+           
+            ticketService.DeleteTicket(modelId);
+
+            var allTickets = ticketService.GetTickets();
+
+            return RedirectToAction("Index", allTickets);
+        }
+
+            [IgnoreAntiforgeryToken]
         public ActionResult SaveTicket([FromBody] TicketViewModel model)
         {
-            return RedirectToAction("Index");
+            bool isBought = model.IsBought;
+            decimal ticketPrice = decimal.Parse(model.TicketPrice);
+            string ticketName = model.TicketName;
+
+            ticketService.createUserTickets(isBought, ticketPrice, ticketName);
+
+            var allTickets = ticketService.GetTickets();
+            return RedirectToAction("Index", allTickets);
         }
 
         // GET: TicketsController/Details/5

@@ -10,10 +10,16 @@ namespace E_TS.Contracts
     public interface ITicketsService
     {
         /// <summary>
-        /// метод за взимане на всички редове от базата за резервации
+        /// метод за взимане на всички редове от базата за билети
         /// </summary>
         /// <returns></returns>
         List<TicketViewModel> GetTickets();
+
+        /// <summary>
+        /// метод за взимане на всички редове от базата за  билети по подадени параметри
+        /// </summary>
+        /// <returns></returns>
+        List<TicketViewModel> GetTickets(bool isBought, decimal ticketPrice, string ticketName);
 
         /// <summary>
         /// запазване на данните в базата от данни
@@ -33,5 +39,12 @@ namespace E_TS.Contracts
         /// <param name="Id"></param>
         /// <returns></returns>
         bool DeleteTicket(int Id);
+
+        /// <summary>
+        /// Записва билет в базата данни
+        /// </summary>
+        /// <param name="isBought"></param><param name="ticketPrice"></param><param name="ticketName"></param>
+        /// <returns></returns>
+        public bool createUserTickets(bool isBought, decimal ticketPrice, string ticketName);
     }
 }

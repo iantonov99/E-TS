@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Билети";
-    string[] TableHeaders = new string[] { "Билет", "Цена" };
+    string[] TableHeaders = new string[] { "Билет", "Цена", "Състояние", "Начална Дата", "Крайна Дата", "Премахни" };
 }
 
 <!DOCTYPE html>
@@ -35,6 +35,18 @@
         font-family: 'Roboto', sans-serif;
     }
 
+    .s {
+        background-color: #faf60c;
+    }
+
+    .bought {
+        background-color: #a3ff16;
+    }
+
+    .expired {
+        background-color: #f30f1a;
+    }
+
     #weekendTicket {
         height: 80px;
         text-align: center;
@@ -45,6 +57,11 @@
         height: 80px;
         text-align: center;
         background-image: url('images/purple.jpg');
+    }
+
+    #tableDiv
+    {
+        overflow: scroll;
     }
 
     #weekTicket {
@@ -260,6 +277,29 @@
 </style>
 
 <script>
+
+    function deleteTicketClicked(ticketId)
+    {
+       var request = new XMLHttpRequest();
+
+       //FOR NOW IT IS HARDCODED -- TODO -- FIX IT!
+
+       var value = parseInt(ticketId);
+
+       var o = new Object();
+       o.Id = value;
+
+       request.open('POST', '/Tickets/DeleteTicket', true);
+       request.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+       request.setRequestHeader('Content-Length', JSON.stringify(o).length);
+       request.onreadystatechange = function () {
+           if (request.readyState == 4 && request.status == 200) {
+               window.location = "@(Url.Action("Index", "Tickets"))";
+           }
+       }
+       request.send(JSON.stringify(o));
+    }
+
     function weekTickedClicked(ticket) {
         let buttonS = document.getElementById('btnActivation');
 
@@ -283,7 +323,8 @@
 
             var request = new XMLHttpRequest();
 
-            //FOR NOW IT IS HARDCODED -- TODO -- FIX IT! 
+            //FOR NOW IT IS HARDCODED -- TODO -- FIX IT!
+
             var value = '10,20';
             var ticketNm = "WeekTicket";
 
@@ -291,13 +332,13 @@
             o.IsBought = false;
             o.TicketPrice = value;
             o.TicketName = ticketNm;
-            
+
             request.open('POST', '/Tickets/SaveTicket', true);
             request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
             request.setRequestHeader('Content-Length', JSON.stringify(o).length);
             request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200) {
-                    //console.log(request.responseText)
+                    window.location = "@(Url.Action("Index", "Tickets"))";
                 }
             }
             request.send(JSON.stringify(o));
@@ -328,6 +369,28 @@
         function removeWaiting() {
             document.querySelector("#btnActivationWeekend").classList.remove('btn--waiting');
             document.querySelector("#btnActivationWeekend").classList.add('btn--activated');
+
+            var request = new XMLHttpRequest();
+
+            //FOR NOW IT IS HARDCODED -- TODO -- FIX IT!
+
+            var value = '7,50';
+            var ticketNm = "WeekendTicket";
+
+            var o = new Object();
+            o.IsBought = false;
+            o.TicketPrice = value; Tickets
+            o.TicketName = ticketNm;
+
+            request.open('POST', '//SaveTicket', true);
+            request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+            request.setRequestHeader('Content-Length', JSON.stringify(o).length);
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    window.location = "@(Url.Action("Index", "Tickets"))";
+                }
+            }
+            request.send(JSON.stringify(o));
         }
 
         function returnActivated() {
@@ -355,6 +418,28 @@
         function removeWaiting() {
             document.querySelector("#btnActivationDaily").classList.remove('btn--waiting');
             document.querySelector("#btnActivationDaily").classList.add('btn--activated');
+
+            var request = new XMLHttpRequest();
+
+            //FOR NOW IT IS HARDCODED -- TODO -- FIX IT!
+
+            var value = '4,00';
+            var ticketNm = "DailyTicket";
+
+            var o = new Object();
+            o.IsBought = false;
+            o.TicketPrice = value;
+            o.TicketName = ticketNm;
+
+            request.open('POST', '/Tickets/SaveTicket', true);
+            request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+            request.setRequestHeader('Content-Length', JSON.stringify(o).length);
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    window.location = "@(Url.Action("Index", "Tickets"))";
+                }
+            }
+            request.send(JSON.stringify(o));
         }
 
         function returnActivated() {
@@ -382,6 +467,28 @@
         function removeWaiting() {
             document.querySelector("#btnActivationHour").classList.remove('btn--waiting');
             document.querySelector("#btnActivationHour").classList.add('btn--activated');
+
+            var request = new XMLHttpRequest();
+
+            //FOR NOW IT IS HARDCODED -- TODO -- FIX IT!
+
+            var value = '1,60';
+            var ticketNm = "HourTicket";
+
+            var o = new Object();
+            o.IsBought = false;
+            o.TicketPrice = value;
+            o.TicketName = ticketNm;
+
+            request.open('POST', '/Tickets/SaveTicket', true);
+            request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+            request.setRequestHeader('Content-Length', JSON.stringify(o).length);
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    window.location = "@(Url.Action("Index", "Tickets"))";
+                }
+            }
+            request.send(JSON.stringify(o));
         }
 
         function returnActivated() {
@@ -392,33 +499,36 @@
 </script>
 
 <body>
-
     <div id="ticketContainer">
         <div id="weekTicket">
+            <span id="weekTicketPrice">10,20</span>
             Седмичен Билет
             <button href="#" class="btn btn--activate" onclick="weekTickedClicked('btnActivation')" id="btnActivation">
                 <span class="btn__icon"></span>
-                <span class="btn__text" data-wait="Waiting" data-after="Activated">Запази</span>
+                <span class="btn__text" data-wait="Waiting" data-after="Активиран">Запази</span>
             </button>
         </div>
 
         <div id="weekendTicket">
+            <span id="weekendTicketPrice">7,50</span>
             Уикенд Билет
             <button href="#" class="btn btn--activateWE" onclick="weekendTickedClicked()" id="btnActivationWeekend">
                 <span class="btn__icon"></span>
-                <span class="btn__text" data-wait="Waiting" data-after="Activated">Запази</span>
+                <span class="btn__text" data-wait="Waiting" data-after="Активиран">Запази</span>
             </button>
         </div>
 
         <div id="dailyTicket">
+            <span id="dailyTicketPrice">4,00</span>
             Дневен Билет
             <button href="#" class="btn btn--activate" onclick="DailyTickedClicked()" id="btnActivationDaily">
                 <span class="btn__icon"></span>
-                <span class="btn__text" data-wait="Waiting" data-after="Activated">Запази</span>
+                <span class="btn__text" data-wait="Waiting" data-after="Активиран">Запази</span>
             </button>
         </div>
 
         <div id="hourTicket">
+            <span id="hourTicketPrice">1,60</span>
             Часов Билет
             <button href="#" class="btn btn--activate" onclick="HourTickedClicked()" id="btnActivationHour">
                 <span class="btn__icon"></span>
@@ -427,7 +537,7 @@
         </div>
     </div>
 
-    @*<div class="table">
+    <div class="table" id="tableDiv">
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -444,18 +554,40 @@
                 {
                     @foreach (var r in Model)
                     {
-                        <tr>
-                            <td></td>
-                            <td>@r.IsBought</td>
-                            <td>@r.TicketDetail.TicketPrice</td>
-                            <td>
-                                <a href="@Url.Action("Copy", "Reservation")/@r.Id" class="btn btn-warning">Резервирай отново</a>
-                            </td>
-                        </tr>
+                <tr class="@(r.IsBought == true ? "bought" : "s") @(r.IsExpired == true ? "expired" : "r")">
+                    @if (r.TicketName == "WeekTicket")
+                    {
+                        <td>Седмичен Билет</td>
+                    }
+                    else if (r.TicketName == "WeekendTicket")
+                    {
+                        <td>Уикенд Билет</td>
+                    }
+                    else if (r.TicketName == "DailyTicket")
+                    {
+                        <td>Дневен Билет</td>
+                    }
+                    else
+                    {
+                        <td>Едночасов Билет</td>
+                    }
+                    <td>@r.TicketPrice</td>
+                    @if (!r.IsBought)
+                    {
+                        <td>Заявен</td>
+                    }
+                    else
+                    {
+                        <td>Активен</td>
+                    }
+                    <td>@r.StartDate</td>
+                    <td>@r.EndDate</td>
+                    <td><button id="@r.Id" onclick="deleteTicketClicked(@r.Id)">Премахни</button></td>
+                </tr>
                     }
                 }
             </tbody>
         </table>
-    </div>*@
+    </div>
 </body>
 </html>

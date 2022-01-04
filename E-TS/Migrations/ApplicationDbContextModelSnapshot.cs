@@ -229,17 +229,26 @@ namespace E_TS.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("EndDate")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsBought")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeclined")
                         .HasColumnType("bit");
 
+                    b.Property<string>("StartDate")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("TicketDetailId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("isExpired")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
