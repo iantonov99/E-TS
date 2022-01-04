@@ -36,9 +36,10 @@ namespace E_TS.Services
             return false;
         }
 
-        public List<TicketViewModel> GetTickets()
+        public List<TicketViewModel> GetTickets(string userId)
         {
             var results = _repo.All<Ticket>()
+                .Where(u => u.UserId == userId)
                 .Select(r => new TicketViewModel()
                 {
                     Id = r.Id,
@@ -115,7 +116,7 @@ namespace E_TS.Services
             return resultDateTime.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
-        public bool createUserTickets(bool isBought, decimal ticketPrice, string ticketName)
+        public bool createUserTickets(bool isBought, decimal ticketPrice, string ticketName, string userId)
         {
             var ticketDetail = getCorrectTicketDetails(ticketPrice, ticketName);
 
@@ -128,7 +129,8 @@ namespace E_TS.Services
                     IsBought = isBought,
                     StartDate = startDate.ToString("yyyy-MM-dd HH:mm:ss"),
                     EndDate = GetEndDate(startDate, ticketName),
-                    TicketDetail = ticketDetail
+                    TicketDetail = ticketDetail,
+                    UserId = userId
                 };
 
                 _repo.Add(newTicket);

@@ -15,5 +15,6 @@ namespace E_TS.ViewModels.Reservation
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public bool IsExpired { get; set; }
+        public string userId { get; set; }
     }
 }

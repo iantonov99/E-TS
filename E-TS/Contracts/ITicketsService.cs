@@ -13,7 +13,7 @@ namespace E_TS.Contracts
         /// метод за взимане на всички редове от базата за билети
         /// </summary>
         /// <returns></returns>
-        List<TicketViewModel> GetTickets();
+        List<TicketViewModel> GetTickets(string userId);
 
         /// <summary>
         /// метод за взимане на всички редове от базата за  билети по подадени параметри
@@ -45,6 +45,6 @@ namespace E_TS.Contracts
         /// </summary>
         /// <param name="isBought"></param><param name="ticketPrice"></param><param name="ticketName"></param>
         /// <returns></returns>
-        public bool createUserTickets(bool isBought, decimal ticketPrice, string ticketName);
+        public bool createUserTickets(bool isBought, decimal ticketPrice, string ticketName, string userId);
     }
 }
