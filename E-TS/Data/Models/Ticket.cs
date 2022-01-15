@@ -21,8 +21,8 @@ namespace E_TS.Models
 
         public TicketDetails TicketDetail { get; set; }
 
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public bool IsExpired { get; set; }
     }

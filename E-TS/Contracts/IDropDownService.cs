@@ -11,5 +11,9 @@ namespace E_TS.Contracts
         SelectList GetTransportTypes();
 
         SelectList GetTransportLines();
+
+        SelectList GetPeriods();
+
+        List<SelectListItem> GetTransportLinesByTransportType(int? TransportType);
     }
 }

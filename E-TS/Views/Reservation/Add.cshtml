@@ -12,8 +12,6 @@
                     <div class="card-header">
                         <h3 class="card-title">Добавяне на резервация</h3>
                     </div>
-                    <!-- /.card-header -->
-                    <!-- form start -->
                     <form asp-action="Add" method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         @Html.HiddenFor(r => r.Id)
@@ -49,6 +47,7 @@
             </div>
             <div class="col-md-6">
                 <span asp-validation-for="@Model.Latitude" class="text-danger"></span>
+                <span id="validCoords" class="text-danger"></span>
                 <div id="map">
 
                 </div>
@@ -82,9 +81,26 @@
                     var loc = e.target.tryPixelToLocation(point);
                     var marker = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(loc.latitude, loc.longitude), { color: 'green' });
                     map.entities.push(marker);
-                    debugger;
                     $('#lat').val(loc.latitude);
                     $('#lon').val(loc.longitude);
+                    document.getElementById("validCoords").innerHTML = "";
+                    var small = ((loc.latitude - 42.697732) * (loc.latitude - 42.697732)) + ((loc.longitude - 23.321804) * (loc.longitude - 23.321804)) < (0.013 * 0.013);
+                    var medium = ((loc.latitude - 42.697732) * (loc.latitude - 42.697732)) + ((loc.longitude - 23.321804) * (loc.longitude - 23.321804)) < (0.05 * 0.05);
+                    var large = ((loc.latitude - 42.697732) * (loc.latitude - 42.697732)) + ((loc.longitude - 23.321804) * (loc.longitude - 23.321804)) < (0.075 * 0.075);
+                    if (small) {
+                        $('#Price').val(5);
+                    }
+                    else if (!small && medium) {
+                        $('#Price').val(10);
+                    }
+                    else if (!small && !medium && large) {
+                        $('#Price').val(15);
+                    }
+                    else {
+                        document.getElementById("validCoords").innerHTML = "В тази зона не предлагаме услугата, моля изберете друга зона!";
+                        $('#Price').val(0);
+                        $('#lat').val(0);
+                    }
                 }
 
 

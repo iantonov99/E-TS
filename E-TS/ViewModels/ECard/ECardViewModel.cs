@@ -20,14 +20,21 @@ namespace E_TS.ViewModels.ECard
         [Display(Name = "Валидна от")]
         public DateTime ValidFrom { get; set; }
 
-        [Required(ErrorMessage = "Полето е задължително")]
         [Display(Name = "Валидна до")]
         public DateTime ValidTo { get; set; }
+
+        [Required(ErrorMessage = "Полето е задължително")]
+        [Display(Name = "Период")]
+        public int Period { get; set; }
+
+        [Display(Name = "Цена")]
+        public int Price { get; set; }
 
         public string UserId { get; set; }
 
         public SelectList TransportTypes { get; set; }
 
         public SelectList TransportLines { get; set; }
+        public SelectList Periods { get; set; }
     }
 }

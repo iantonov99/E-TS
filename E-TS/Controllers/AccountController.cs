@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using E_TS.Data.Models;
 using E_TS.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -81,7 +78,7 @@ namespace E_TS.Controllers
             }
 
 
-            var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
             if (!result.Succeeded)
             {

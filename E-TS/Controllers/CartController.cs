@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using E_TS.Extensions;
 using E_TS.ViewModels.Cart;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_TS.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private readonly ICartService cartService;

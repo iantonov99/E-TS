@@ -10,26 +10,24 @@
         @Html.HiddenFor(c => c.UserId)
         @Html.HiddenFor(c => c.Id)
         <div class="card-body">
-            <div class="form-group">
+            <div class="form-group col-6">
                 <label for="transportType">Превозно срество: </label>
-                @Html.DropDownListFor(n => n.TransportType, Model.TransportTypes, "Всички")
+                @Html.DropDownListFor(n => n.TransportType, Model.TransportTypes, "Всички", new { @class = "form-control" })
             </div>
-            <div class="form-group">
+            <div class="form-group col-6">
                 <label for="numberOfTransport">Номер на транспорта: </label>
-                @Html.DropDownListFor(n => n.TransportNumber, Model.TransportLines, "Всички")
+                @Html.DropDownListFor(n => n.TransportNumber, Model.TransportLines, new { @class = "form-control" })
             </div>
-            <div class="form-group">
-                @Html.EditorFor(r => r.ValidFrom, "DateTime")
+            <div class="form-group col-6">
+                @Html.EditorFor(r => r.ValidFrom, "Date")
             </div>
-            <div class="form-group row">
-                <label asp-for="@Model.ValidTo" class="col-form-label">Валидна до</label>
-                <div class="input-group date" id="validTo" data-target-input="nearest">
-                    <input asp-for="@Model.ValidTo" type="text" class="form-control datetimepicker-input" autocomplete="off" data-target="#validTo" value="@(Model.ValidTo > DateTime.MinValue ? Model.ValidTo.ToString("dd.MM.yyyy") : String.Empty)" />
-                    <div class="input-group-append" data-target="#validTo" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                </div>
-                <span asp-validation-for="@Model.ValidTo" class="text-danger"></span>
+            <div class="form-group col-6">
+                <label for="transportType">Периоди: </label>
+                @Html.DropDownListFor(n => n.Period, Model.Periods, "Избери", new { @class = "form-control" })
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="@Model.Price" class="control-label"></label>
+                <input asp-for="@Model.Price" class="form-control" type="number" readonly>
             </div>
         </div>
         <!-- /.card-body -->
@@ -43,8 +41,38 @@
 @section scripts {
     <script>
         (function () {
-            $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' }, autoclose: true });
-            $('#validTo').datetimepicker({ icons: { time: 'far fa-clock' }, autoclose: true });
+            $('#reservationdate').datetimepicker({ icons: { time: 'far fa-clock' }, autoclose: true, format: 'L' });
+            $('#validTo').datetimepicker({ icons: { time: 'far fa-clock' }, autoclose: true, format: 'L' });
         })();
+    </script>
+
+    <script>
+            $('#TransportType').change(function () {
+                var url = '@Url.Action("GetTransportLinesByTransportType","Ecard")';
+                var ddlsource = "#TransportType";
+                $.getJSON(url, { TransportType: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $("#TransportNumber").empty();
+                    $.each(data, function (i, subcategory) {
+                        items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
+                    });
+                    $('#TransportNumber').html(items);
+                });
+            });
+
+
+            $('#Period').change(function () {
+                var price = "#Price";
+                var period = $("#Period").val();
+                switch (period) {
+                    case "1": $(price).val(25); break;
+                    case "2": $(price).val(60); break;
+                    case "3": $(price).val(120); break;
+                    case "4": $(price).val(200); break;
+                      default:
+                        console.log(`wrong input`);
+                }
+
+            });
     </script>
 }

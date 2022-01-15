@@ -54,7 +54,7 @@ namespace E_TS.Services
             foreach (var res in results)
             {
                 DateTime dateTimeNow = DateTime.Now;
-                DateTime endDate = DateTime.Parse(res.EndDate);
+                DateTime endDate = res.EndDate;
 
                 int resId = res.Id;
 
@@ -93,7 +93,7 @@ namespace E_TS.Services
             return results;
         }
 
-        private string GetEndDate(DateTime startDateTime, string ticketName)
+        private DateTime GetEndDate(DateTime startDateTime, string ticketName)
         {
             DateTime resultDateTime = DateTime.Now;
             if(ticketName == "WeekTicket")
@@ -113,7 +113,7 @@ namespace E_TS.Services
                 resultDateTime = startDateTime.AddHours(1);
             }
 
-            return resultDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            return resultDateTime;
         }
 
         public bool createUserTickets(bool isBought, decimal ticketPrice, string ticketName, string userId)
@@ -127,7 +127,7 @@ namespace E_TS.Services
                 var newTicket = new Ticket()
                 {
                     IsBought = isBought,
-                    StartDate = startDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                    StartDate = startDate,
                     EndDate = GetEndDate(startDate, ticketName),
                     TicketDetail = ticketDetail,
                     UserId = userId,

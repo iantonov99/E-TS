@@ -58,11 +58,12 @@ namespace E_TS.Services
                 {
                     entity = _repo.GetById<ECard>(model.Id);
                     entity.ValidFrom = model.ValidFrom;
-                    entity.ValidTo = model.ValidTo;
+                    entity.ValidTo = GetValidToDateTime(model.Period);
                     entity.TransportTypeId = model.TransportType;
                     entity.TransportNumber = model.TransportNumber;
                     entity.IsDeclined = false;
                     entity.IsBought = false;
+                    entity.Price = model.Price;
                 }
                 else
                 {
@@ -73,8 +74,9 @@ namespace E_TS.Services
                         TransportTypeId = model.TransportType,
                         UserId = model.UserId,
                         ValidFrom = model.ValidFrom,
-                        ValidTo = model.ValidTo,
-                        IsBought = false
+                        ValidTo = GetValidToDateTime(model.Period),
+                        IsBought = false,
+                        Price = model.Price
                     };
                     _repo.Add(entity);
                 }
@@ -105,6 +107,7 @@ namespace E_TS.Services
                     entity.TransportNumber = model.TransportNumber;
                     entity.IsDeclined = false;
                     entity.IsBought = false;
+                    entity.Price = model.Price;
                 }
                 else
                 {
@@ -115,7 +118,8 @@ namespace E_TS.Services
                         TransportTypeId = model.TransportType,
                         UserId = model.UserId,
                         Trips = model.Trips,
-                        IsBought = false
+                        IsBought = false,
+                        Price = model.Price
                     };
                     _repo.Add(entity);
                 }
@@ -129,6 +133,19 @@ namespace E_TS.Services
             }
 
             return result;
+        }
+
+        private DateTime GetValidToDateTime(int Period)
+        {
+            switch (Period)
+            {
+                case 1: return DateTime.UtcNow.AddMonths(1);
+                case 2: return DateTime.UtcNow.AddMonths(3);
+                case 3: return DateTime.UtcNow.AddMonths(6);
+                case 4: return DateTime.UtcNow.AddYears(1);
+                default:
+                    return DateTime.UtcNow;
+            }
         }
     }
 }

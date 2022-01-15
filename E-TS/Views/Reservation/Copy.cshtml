@@ -18,34 +18,34 @@
                 @Html.HiddenFor(r => r.Id)
                 @Html.HiddenFor(x => x.Latitude, new { id = "lat" })
                 @Html.HiddenFor(x => x.Longitude, new { id = "lon" })
-            <div class="card-body">
-                @foreach (var option in Model.Options)
-                {
-                    if ((option.Equals("Spark") && Model.SparkOrScooter.Equals("Spark")) || (option.Equals("Scooter") && Model.SparkOrScooter.Equals("Scooter")))
+                <div class="card-body">
+                    @foreach (var option in Model.Options)
                     {
-                        @Html.RadioButtonFor(model => model.SparkOrScooter, option, new { Checked = "checked" }) @option <br />
+                        if ((option.Equals("Spark") && Model.SparkOrScooter.Equals("Spark")) || (option.Equals("Scooter") && Model.SparkOrScooter.Equals("Scooter")))
+                        {
+                            @Html.RadioButtonFor(model => model.SparkOrScooter, option, new { Checked = "checked" }) @option <br />
+                        }
+                        else
+                        {
+                            @Html.RadioButtonFor(model => model.SparkOrScooter, option) @option <br />
+                        }
                     }
-                    else
-                    {
-                        @Html.RadioButtonFor(model => model.SparkOrScooter, option) @option <br />
-                    }
-                }
-                <span asp-validation-for="@Model.SparkOrScooter" class="text-danger"></span>
-                <div class="form-group">
-                    @Html.EditorFor(r => r.DateAndTime, "DateTime")
+                    <span asp-validation-for="@Model.SparkOrScooter" class="text-danger"></span>
+                    <div class="form-group">
+                        @Html.EditorFor(r => r.DateAndTime, "DateTime")
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Address" class="control-label"></label>
+                        <input asp-for="@Model.Address" class="form-control" type="text" readonly>
+                    </div>
+                    <div class="form-group">
+                        @Html.EditorFor(r => r.Description, "String")
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Price" class="control-label"></label>
+                        <input asp-for="@Model.Price" class="form-control" type="number" readonly>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@Model.Address" class="control-label"></label>
-                    <input asp-for="@Model.Address" class="form-control" type="text" readonly>
-                </div>
-                <div class="form-group">
-                    @Html.EditorFor(r => r.Description, "String")
-                </div>
-                <div class="form-group">
-                    <label asp-for="@Model.Price" class="control-label"></label>
-                    <input asp-for="@Model.Price" class="form-control" type="number" readonly>
-                </div>
-            </div>
                 <div class="card-footer">
                     <input type="submit" value="Добави към количката" class="btn btn-success" />
                     <a asp-action="Index" asp-controller="Reservation" class="btn btn-danger">Назад</a>
@@ -55,6 +55,7 @@
     </div>
     <div class="col-md-6">
         <span asp-validation-for="@Model.Latitude" class="text-danger"></span>
+        <span id="validCoords" class="text-danger"></span>
         <div id="map">
 
         </div>
@@ -78,14 +79,28 @@
                 zoom: 12
             });
 
-            debugger;
-            var longitude = $("#lon").val();
-            var latitude = $("#lat").val();
-
-            var marker = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(latitude, longitude), { color: 'green' });
-            map.entities.push(marker);
-
+            $('#lat').val(loc.latitude);
+            $('#lon').val(loc.longitude);
+            document.getElementById("validCoords").innerHTML = "";
+            var small = ((loc.latitude - 42.697732) * (loc.latitude - 42.697732)) + ((loc.longitude - 23.321804) * (loc.longitude - 23.321804)) < (0.013 * 0.013);
+            var medium = ((loc.latitude - 42.697732) * (loc.latitude - 42.697732)) + ((loc.longitude - 23.321804) * (loc.longitude - 23.321804)) < (0.05 * 0.05);
+            var large = ((loc.latitude - 42.697732) * (loc.latitude - 42.697732)) + ((loc.longitude - 23.321804) * (loc.longitude - 23.321804)) < (0.075 * 0.075);
+            if (small) {
+                $('#Price').val(5);
             }
+            else if (!small && medium) {
+                $('#Price').val(10);
+            }
+            else if (!small && !medium && large) {
+                $('#Price').val(15);
+            }
+            else {
+                document.getElementById("validCoords").innerHTML = "В тази зона не предлагаме услугата, моля изберете друга зона!";
+                $('#Price').val(0);
+                $('#lat').val(0);
+            }
+
+        }
 
     </script>
     <script src='https://www.bing.com/api/maps/mapcontrol?callback=loadMap&key=AoA20tNDXEBV-TUd6Z4NW0Pd0VXQ-l3uu04Qf8jfKK3U5W-iwMSBRergVVcSmgZL'></script>

@@ -5,9 +5,11 @@ using E_TS.Extensions;
 using Microsoft.AspNetCore.Identity;
 using E_TS.Data.Models;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_TS.Controllers
 {
+    [Authorize]
     public class ReservationController : Controller
     {
         private readonly IReservationService reservationService;

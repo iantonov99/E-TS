@@ -8,27 +8,24 @@
     <!-- form start -->
     <form asp-action="RechargeTrips" method="post" role="form">
         @Html.HiddenFor(c => c.UserId)
+        @Html.HiddenFor(c => c.Id)
         <div class="card-body">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Тип Транспорт:</label>
-                <select name="тип" id="typeOfTransport">
-                    <option>Метро</option>
-                    <option>Автобус</option>
-                    <option>Тролейбус</option>
-                    <option>Трамвай</option>
-                    <option>Всичко</option>
-                </select>
+            <div class="form-group col-6">
+                <label for="transportType">Превозно срество: </label>
+                @Html.DropDownListFor(n => n.TransportType, Model.TransportTypes, "Всички", new { @class = "form-control" })
             </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Номер на транспорта: </label>
-                <select name="линия" id="transportLine">
-                    <option>280</option>
-                    <option>94</option>
-                </select>
+            <div class="form-group col-6">
+                <label for="numberOfTransport">Номер на транспорта: </label>
+                @Html.DropDownListFor(n => n.TransportNumber, Model.TransportLines, new { @class = "form-control" })
             </div>
-            <div class="form-group">
-                <label>Брой пътувания</label>
-                <input type="text" />
+            <div class="form-group col-6">
+                <label asp-for="@Model.Trips" class="control-label"></label>
+                <input asp-for="@Model.Trips" class="form-control" type="number">
+                <span id="validTrips" class="text-danger"></span>
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="@Model.Price" class="control-label"></label>
+                <input asp-for="@Model.Price" class="form-control" type="number" readonly>
             </div>
         </div>
         <!-- /.card-body -->
@@ -38,3 +35,46 @@
         </div>
     </form>
 </div>
+
+@section scripts {
+    <script>
+
+            $('#TransportType').change(function () {
+                var url = '@Url.Action("GetTransportLinesByTransportType","Ecard")';
+                var ddlsource = "#TransportType";
+                $.getJSON(url, { TransportType: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $("#TransportNumber").empty();
+                    $.each(data, function (i, subcategory) {
+                        items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
+                    });
+                    $('#TransportNumber').html(items);
+                });
+            });
+            $('#Trips').change(function () {
+                var price = "#Price";
+                var current = 0;
+                var trips = $("#Trips").val();
+                document.getElementById("validTrips").innerHTML = "";
+                if (trips < 5) {
+                    document.getElementById("validTrips").innerHTML = "Минимумът на пътуванията е 5";
+                    return;
+                }
+                if (trips >= 5 && trips <= 10) {
+                    current = trips * 1.2;
+                }
+                else if (trips > 10 && trips <= 15) {
+                    current = trips * 1;
+                }
+                else if (trips > 15) {
+                    current = trips * 0.8;
+                }
+                if (current > 9) {
+                    current = current.toPrecision(4);
+                } else {
+                    current = current.toPrecision(3);
+                }
+                $(price).val(current);
+            });
+    </script>
+}

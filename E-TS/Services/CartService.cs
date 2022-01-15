@@ -28,7 +28,7 @@ namespace E_TS.Services
                 {
                     var entity = _repo.GetById<Ticket>(Id);
                     entity.IsBought = true;
-                    entity.StartDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+                    entity.StartDate = DateTime.UtcNow;
                     entity.EndDate = DateToByTicketType(DateTime.UtcNow, entity.TicketDetail.TicketName);
                     _repo.Update(entity);
                 }
@@ -83,7 +83,7 @@ namespace E_TS.Services
                 foreach (var i in tickets)
                 {
                     i.IsBought = true;
-                    i.StartDate = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+                    i.StartDate = DateTime.UtcNow;
                     i.EndDate = DateToByTicketType(DateTime.UtcNow, i.TicketDetail.TicketName);
                 }
                 foreach (var i in eCards)
@@ -117,7 +117,7 @@ namespace E_TS.Services
         {
             var list = new List<CartViewModel>();
             var tickets = _repo.All<Ticket>()
-                               .Where(t => t.UserId.Equals(UserId) && t.IsBought == false && t.IsDeclined == false)
+                               .Where(t => t.UserId.Equals(UserId) && t.IsBought == false && t.IsDeclined == false && t.EndDate > DateTime.UtcNow)
                                .Select(t => new CartViewModel()
                                {
                                    Id = t.Id,
@@ -215,7 +215,7 @@ namespace E_TS.Services
             return result;
         }
 
-        private string DateToByTicketType(DateTime startDateTime, string TicketName)
+        private DateTime DateToByTicketType(DateTime startDateTime, string TicketName)
         {
             DateTime resultDateTime = DateTime.Now;
             if (TicketName == "WeekTicket")
@@ -234,7 +234,7 @@ namespace E_TS.Services
             {
                 resultDateTime = startDateTime.AddHours(1);
             }
-            return resultDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+            return resultDateTime;
         }
     }
 }

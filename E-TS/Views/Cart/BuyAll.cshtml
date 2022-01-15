@@ -20,7 +20,7 @@
                 @Html.EditorFor(p => p.CVV)
             </div>
             <div class="form-group">
-                @Html.EditorFor(p => p.ValidTo, "DateTime")
+                @Html.EditorFor(p => p.ValidTo, "Date")
             </div>
         </div>
         <div class="card-footer">
@@ -33,7 +33,7 @@
 @section scripts {
     <script>
         (function () {
-            $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' }, autoclose: true });
+            $('#reservationdate').datetimepicker({ icons: { time: 'far fa-clock' }, autoclose: true, format: 'L' });
         })();
     </script>
 }

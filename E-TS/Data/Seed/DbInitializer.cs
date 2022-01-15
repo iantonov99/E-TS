@@ -11,19 +11,6 @@ namespace E_TS.Data.Seed
         {
             context.Database.EnsureCreated();
 
-            if (!context.Tickets.Any())
-            {
-                var tickets = new Ticket[]
-{
-                    new Ticket{IsBought = false},
-                    new Ticket{IsBought = false},
-                    new Ticket{IsBought = false},
-                    new Ticket{IsBought = false}
-};
-                context.AddRange(tickets);
-                context.SaveChanges();
-            }
-
             if (!context.Reservations.Any())
             {
                 var reservations = new Reservation[]

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using E_TS.Extensions;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_TS.Controllers
 {
+    [Authorize]
     public class ECardController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -38,7 +40,8 @@ namespace E_TS.Controllers
             {
                 UserId = user.Id,
                 TransportTypes = dropDownService.GetTransportTypes(),
-                TransportLines = dropDownService.GetTransportLines()
+                TransportLines = dropDownService.GetTransportLines(),
+                Periods = dropDownService.GetPeriods()
             };
 
             return View("Recharge", model);
@@ -52,7 +55,8 @@ namespace E_TS.Controllers
                 Id = Id,
                 UserId = user.Id,
                 TransportTypes = dropDownService.GetTransportTypes(),
-                TransportLines = dropDownService.GetTransportLines()
+                TransportLines = dropDownService.GetTransportLines(),
+                Periods = dropDownService.GetPeriods()
             };
 
             return View(model);
@@ -113,6 +117,13 @@ namespace E_TS.Controllers
             this.ShowNotificationOnUI(result);
 
             return RedirectToAction("Index", "ECard");
+        }
+
+        public IActionResult GetTransportLinesByTransportType(int? TransportType)
+        {
+            var model = dropDownService.GetTransportLinesByTransportType(TransportType);
+
+            return new JsonResult(model);
         }
 
         private static int CalculateAge(DateTime dateOfBirth)

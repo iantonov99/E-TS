@@ -18,6 +18,9 @@ namespace E_TS.ViewModels.ECard
         [Display(Name = "Оставащи пътувания")]
         public int Trips { get; set; }
 
+        [Display(Name = "Цена")]
+        public int Price { get; set; }
+
         public string UserId { get; set; }
 
         public SelectList TransportTypes { get; set; }

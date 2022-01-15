@@ -2,6 +2,7 @@
 using E_TS.Data.Models;
 using E_TS.ViewModels.Reservation;
 using E_TS.ViewModels.Ticket;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace E_TS.Controllers
 {
+    [Authorize]
     public class TicketsController : Controller
     {
         private readonly ITicketsService ticketService;
