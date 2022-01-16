@@ -3,6 +3,7 @@ using E_TS.Data.Common;
 using E_TS.Data.Models;
 using E_TS.Models;
 using E_TS.ViewModels.Reservation;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,12 @@ namespace E_TS.Services
     public class TicketsService : ITicketsService
     {
         private readonly IRepository _repo;
-        public TicketsService(IRepository repo)
+        private readonly ILogger<TicketsService> logger;
+
+        public TicketsService(IRepository repo, ILogger<TicketsService> logger)
         {
             _repo = repo;
+            this.logger = logger;
         }
 
         public bool DeleteTicket(int Id)
@@ -27,10 +31,9 @@ namespace E_TS.Services
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
-                throw;
+                logger.Log(LogLevel.Debug, $"error occured: {ex.Message}");
             }
 
             return false;
@@ -71,7 +74,7 @@ namespace E_TS.Services
             return results;
         }
 
-        private TicketDetails getCorrectTicketDetails(decimal ticketPrice, string ticketName)
+        private TicketDetails getCorrectTicketDetails(double ticketPrice, string ticketName)
         {
             var ticketDetail = _repo.All<TicketDetails>()
                .Where(i => i.TicketName.Equals(ticketName))
@@ -116,7 +119,7 @@ namespace E_TS.Services
             return resultDateTime;
         }
 
-        public bool createUserTickets(bool isBought, decimal ticketPrice, string ticketName, string userId)
+        public bool createUserTickets(bool isBought, double ticketPrice, string ticketName, string userId)
         {
             var ticketDetail = getCorrectTicketDetails(ticketPrice, ticketName);
 
@@ -141,8 +144,8 @@ namespace E_TS.Services
             }
             catch (Exception ex)
             {
+                logger.Log(LogLevel.Debug, $"error occured: {ex.Message}");
                 return false;
-                throw;
             }
         }
 

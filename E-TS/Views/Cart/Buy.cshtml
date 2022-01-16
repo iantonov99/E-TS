@@ -19,7 +19,9 @@
                 @Html.EditorFor(p => p.Name)
             </div>
             <div class="form-group">
-                @Html.EditorFor(p => p.CVV)
+                <label asp-for="@Model.CVV" class="control-label"></label>
+                <input asp-for="@Model.CVV" class="form-control" type="text">
+                <span asp-validation-for="@Model.CVV" class="text-danger"></span>
             </div>
             <div class="form-group">
                 @Html.EditorFor(p => p.ValidTo, "Date")

@@ -45,6 +45,6 @@ namespace E_TS.Contracts
         /// </summary>
         /// <param name="isBought"></param><param name="ticketPrice"></param><param name="ticketName"></param>
         /// <returns></returns>
-        public bool createUserTickets(bool isBought, decimal ticketPrice, string ticketName, string userId);
+        public bool createUserTickets(bool isBought, double ticketPrice, string ticketName, string userId);
     }
 }

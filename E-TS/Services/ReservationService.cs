@@ -2,6 +2,7 @@
 using E_TS.Data.Common;
 using E_TS.Data.Models;
 using E_TS.ViewModels.Reservation;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,12 @@ namespace E_TS.Services
     public class ReservationService : IReservationService
     {
         private readonly IRepository _repo;
-        public ReservationService(IRepository repo)
+        private readonly ILogger<ReservationService> logger;
+
+        public ReservationService(IRepository repo, ILogger<ReservationService> logger)
         {
             _repo = repo;
+            this.logger = logger;
         }
 
         public bool DeleteReservation(int Id)
@@ -28,7 +32,7 @@ namespace E_TS.Services
             }
             catch (Exception ex)
             {
-                //TODO ILogger
+                logger.Log(LogLevel.Debug, $"error occured: {ex.Message}");
             }
 
             return result;
@@ -110,7 +114,7 @@ namespace E_TS.Services
             }
             catch (Exception ex)
             {
-                //ILogger
+                logger.Log(LogLevel.Debug, $"error occured: {ex.Message}");
             }
 
             return result;

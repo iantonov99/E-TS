@@ -7,15 +7,19 @@ using System.Collections.Generic;
 using System.Linq;
 using E_TS.Constants;
 using System;
+using Microsoft.Extensions.Logging;
 
 namespace E_TS.Services
 {
     public class CartService : ICartService
     {
         private readonly IRepository _repo;
-        public CartService(IRepository repo)
+        private readonly ILogger<CartService> logger;
+
+        public CartService(IRepository repo, ILogger<CartService> logger)
         {
             _repo = repo;
+            this.logger = logger;
         }
 
         public bool Buy(int Id, int Table, string UserId)
@@ -61,7 +65,7 @@ namespace E_TS.Services
             }
             catch (Exception ex)
             {
-                //TODO LOG
+                logger.Log(LogLevel.Debug, $"error occured: {ex.Message}");
             }
             return result;
         }
@@ -108,7 +112,7 @@ namespace E_TS.Services
             }
             catch (Exception ex)
             {
-
+                logger.Log(LogLevel.Debug, $"error occured: {ex.Message}");
             }
             return result;
         }
@@ -123,8 +127,8 @@ namespace E_TS.Services
                                    Id = t.Id,
                                    Product = "Билет",
                                    Table = Constants.Constants.TicketTable,
-                                   Price = t.TicketDetail == null ? 0.0 : (double)t.TicketDetail.TicketPrice,
-                                   Detail = t.TicketDetail == null ? "" : t.TicketDetail.TicketName
+                                   Price = t.TicketDetail == null ? 0.0 : t.TicketDetail.TicketPrice,
+                                   Detail = t.TicketDetail == null ? "" : GetTicketName(t.TicketDetail.TicketName)
                                })
                                .ToList();
             var eCards = _repo.All<ECard>()
@@ -169,6 +173,19 @@ namespace E_TS.Services
             return list;
         }
 
+        private static string GetTicketName(string ticketName)
+        {
+            switch (ticketName)
+            {
+                case "OneHour": return "Едночасов";
+                case "DailyTicket": return "Дневен";
+                case "ThreeDaysTicket": return "Тридневен";
+                case "WeekTicket": return "Седмичен";
+                default:
+                    return "";
+            }
+        }
+
         public bool Remove(int Id, int Table)
         {
             bool result = false;
@@ -210,7 +227,7 @@ namespace E_TS.Services
             }
             catch (Exception ex)
             {
-                //TODO LOG
+                logger.Log(LogLevel.Debug, $"error occured: {ex.Message}");
             }
             return result;
         }

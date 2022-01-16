@@ -2,6 +2,7 @@
 using E_TS.Data.Common;
 using E_TS.Data.Models;
 using E_TS.ViewModels.ECard;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 
@@ -10,9 +11,12 @@ namespace E_TS.Services
     public class ECardService : IECardService
     {
         private readonly IRepository _repo;
-        public ECardService(IRepository repo)
+        private readonly ILogger<ECardService> logger;
+
+        public ECardService(IRepository repo, ILogger<ECardService> logger)
         {
             _repo = repo;
+            this.logger = logger;
         }
 
         public ECardsViewModel GetECardsViewModel(string userId)
@@ -86,7 +90,7 @@ namespace E_TS.Services
             }
             catch (Exception ex)
             {
-                //ILogger
+                logger.Log(LogLevel.Debug, $"error occured: {ex.Message}");
             }
 
             return result;
@@ -129,7 +133,7 @@ namespace E_TS.Services
             }
             catch (Exception ex)
             {
-                //ILogger
+                logger.Log(LogLevel.Debug, $"error occured: {ex.Message}");
             }
 
             return result;

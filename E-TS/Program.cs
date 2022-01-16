@@ -33,7 +33,7 @@ namespace E_TS
                 catch (Exception ex)
                 {
 
-                    Console.WriteLine("can't initialize db");
+                    Console.WriteLine($"can't initialize db, error {ex.Message}");
                 }
             }
         }

@@ -7,7 +7,7 @@ namespace E_TS.Data.Models
         [Key]
         public int Id { get; set; }
 
-        public decimal TicketPrice { get; set; }
+        public double TicketPrice { get; set; }
 
         public string TicketName { get; set; }
     }
